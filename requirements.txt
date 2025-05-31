@@ -1,0 +1,11 @@
+# Core dependencies
+torch>=1.9.0
+numpy>=1.21.0
+
+# Optional dependencies for visualization
+matplotlib>=3.3.0
+
+# Development dependencies (optional)
+# pytest>=6.0.0
+# black>=21.0.0
+# flake8>=3.8.0
