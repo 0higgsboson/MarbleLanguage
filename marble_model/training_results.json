@@ -1,10 +1,10 @@
 {
-  "test_loss": 0.15132075175642967,
-  "test_accuracy": 0.9301533219761499,
-  "test_perplexity": 1.1633697748184204,
+  "test_loss": 0.1470056064426899,
+  "test_accuracy": 0.9345955249569707,
+  "test_perplexity": 1.158360481262207,
   "vocab_size": 13,
   "num_sentences": 1000,
-  "training_time": "2025-05-30T22:06:53.949104",
-  "timestamp": 1748668013.949106,
-  "total_training_time_seconds": 5.251544
+  "training_time": "2025-05-30T22:25:11.233535",
+  "timestamp": 1748669111.233537,
+  "total_training_time_seconds": 11.406598
 }

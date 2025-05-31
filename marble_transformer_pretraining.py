@@ -68,6 +68,14 @@ except ImportError:
     TQDM_AVAILABLE = False
     print("Warning: tqdm not available. Install with 'pip install tqdm' for progress bars.")
 
+# Browser launcher for live plotting
+try:
+    from browser_launcher import setup_live_training_view
+    BROWSER_LAUNCHER_AVAILABLE = True
+except ImportError:
+    BROWSER_LAUNCHER_AVAILABLE = False
+    print("Warning: browser_launcher not available - no auto-browser opening")
+
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -785,6 +793,16 @@ def main():
         terminal_tracker = SimpleLossTracker(update_frequency=5, display_frequency=25)
         logger.info("✓ Terminal ASCII plotting enabled")
         logger.info("  Loss plots will be displayed in terminal every 25 iterations")
+        
+        # Set up live browser view for terminal plotting
+        if BROWSER_LAUNCHER_AVAILABLE:
+            try:
+                live_html_file = setup_live_training_view(args.output_dir)
+                terminal_tracker.set_live_html_file(live_html_file)
+                logger.info(f"🌐 Live browser view initialized: {live_html_file}")
+                logger.info("📊 Browser will show live updates every 3 seconds")
+            except Exception as e:
+                logger.warning(f"Failed to setup live browser view: {e}")
     else:
         logger.info("❌ No plotting available - install matplotlib for visual plots")
     
@@ -841,6 +859,11 @@ def main():
         epoch_pbar = tqdm(range(args.epochs), desc="Training Progress")
     else:
         epoch_pbar = range(args.epochs)
+    
+    # Start training message
+    logger.info("🚀 Starting training with live visualization...")
+    if terminal_tracker and BROWSER_LAUNCHER_AVAILABLE:
+        logger.info("💡 Keep your browser tab open to see live training progress!")
     
     for epoch in epoch_pbar:
         logger.info(f"\nEPOCH {epoch+1}/{args.epochs}")

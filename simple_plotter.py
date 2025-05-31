@@ -141,6 +141,8 @@ class SimpleLossTracker:
         self.display_frequency = display_frequency
         self.plotter = TerminalPlotter()
         self.iteration_count = 0
+        self.current_html_file = None
+        self.html_update_frequency = 15  # Update HTML every 15 iterations
     
     def update(self, iteration: int, loss: float, lr: float = None, accuracy: float = None):
         """Update with new training data"""
@@ -161,6 +163,10 @@ class SimpleLossTracker:
         
         if self.iteration_count % display_interval == 0:
             self.display_progress()
+        
+        # Update HTML file periodically for live viewing
+        if self.iteration_count % self.html_update_frequency == 0:
+            self.update_live_html()
     
     def display_progress(self):
         """Display current training progress"""
@@ -180,20 +186,82 @@ class SimpleLossTracker:
         print("\n" + self.plotter.plot_loss())
         print("=" * 80)
     
+    def save_intermediate_data(self, output_dir: str = ".", create_html: bool = True):
+        """Save intermediate training data and update HTML plot"""
+        # Create training_plots directory if it doesn't exist
+        plots_dir = os.path.join(output_dir, "training_plots")
+        os.makedirs(plots_dir, exist_ok=True)
+        
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = os.path.join(plots_dir, f"training_loss_data_{timestamp}.json")
+        self.plotter.save_data(filename)
+        
+        if create_html:
+            html_file = filename.replace('.json', '.html')
+            create_html_plot(filename, html_file)
+            return filename, html_file
+        
+        return filename, None
+    
+    def set_live_html_file(self, html_file_path: str):
+        """Set the HTML file to update during training"""
+        self.current_html_file = html_file_path
+    
+    def update_live_html(self):
+        """Update the live HTML file with current training data"""
+        if not self.current_html_file or len(self.plotter.data['losses']) < 2:
+            return
+        
+        try:
+            # Save current data to a temporary JSON file
+            temp_json = self.current_html_file.replace('.html', '_temp.json')
+            data_with_timestamp = {
+                'timestamp': datetime.now().isoformat(),
+                'data': self.plotter.data,
+                'stats': {
+                    'min_loss': min(self.plotter.data['losses']) if self.plotter.data['losses'] else 0,
+                    'max_loss': max(self.plotter.data['losses']) if self.plotter.data['losses'] else 0,
+                    'final_loss': self.plotter.data['losses'][-1] if self.plotter.data['losses'] else 0,
+                    'total_points': len(self.plotter.data['losses'])
+                }
+            }
+            
+            with open(temp_json, 'w') as f:
+                json.dump(data_with_timestamp, f, indent=2)
+            
+            # Update the HTML file
+            create_html_plot(temp_json, self.current_html_file)
+            
+            # Clean up temp file
+            os.remove(temp_json)
+            
+        except Exception as e:
+            # Don't interrupt training for plotting errors
+            pass
+    
     def save_final_data(self, output_dir: str = "."):
         """Save final training data"""
         # Always show final progress
         self.display_final_progress()
         
+        # Create training_plots directory if it doesn't exist
+        plots_dir = os.path.join(output_dir, "training_plots")
+        os.makedirs(plots_dir, exist_ok=True)
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = os.path.join(output_dir, f"training_loss_data_{timestamp}.json")
+        filename = os.path.join(plots_dir, f"training_loss_data_{timestamp}.json")
         self.plotter.save_data(filename)
         print(f"\nTraining loss data saved to: {filename}")
+        
+        # Also create HTML plot
+        html_file = filename.replace('.json', '.html')
+        create_html_plot(filename, html_file)
+        
         return filename
 
 
 def create_html_plot(data_file: str, output_file: str = None):
-    """Create an HTML plot from saved training data"""
+    """Create an HTML plot from saved training data with auto-refresh"""
     with open(data_file, 'r') as f:
         data = json.load(f)
     
@@ -208,11 +276,20 @@ def create_html_plot(data_file: str, output_file: str = None):
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Training Loss Plot</title>
+    <title>Training Loss Plot - Live</title>
+    <meta http-equiv="refresh" content="3">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {{ font-family: Arial, sans-serif; margin: 20px; }}
+        .status {{ background: #e8f5e8; padding: 10px; border-radius: 5px; margin: 10px 0; }}
+        .live-indicator {{ color: #00aa00; font-weight: bold; }}
+    </style>
 </head>
 <body>
-    <h1>Marble Language Training Loss</h1>
+    <h1>Marble Language Training Loss <span class="live-indicator">● LIVE</span></h1>
+    <div class="status">
+        🔄 Auto-refreshing every 3 seconds | Last updated: {datetime.now().strftime('%H:%M:%S')}
+    </div>
     <div id="lossPlot" style="width:100%;height:500px;"></div>
     
     <h2>Training Statistics</h2>
