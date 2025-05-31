@@ -27,7 +27,7 @@ v2/
 ├── marble_model/                 # Trained model artifacts
 │   ├── best_model.pt            # Best trained model weights
 │   └── training_results.json    # Training metrics and results
-└── marble_sentences_*.txt        # Generated training data files
+└── dataset-*.txt                 # Generated training data files
 ```
 
 ## Features
@@ -70,7 +70,7 @@ This creates a file with 1000 unique marble language sentences.
 ### 2. Train the Model
 
 ```bash
-python3 marble_transformer_pretraining.py marble_sentences_*.txt --epochs 50 --batch_size 32
+python3 marble_transformer_pretraining.py dataset-*.txt --epochs 50 --batch_size 32
 ```
 
 ### 3. Analyze Training Results
@@ -124,16 +124,26 @@ The current best model achieves:
 ## Dependencies
 
 **Required:**
-- Python 3.7+
-- PyTorch
-- NumPy
+- Python 3.8+
+- PyTorch 2.0+
+- NumPy 1.21+
 
 **Optional:**
-- matplotlib (for training visualization)
+- matplotlib 3.3+ (for training visualization and plotting)
+- pytest 6.0+ (for testing)
+- black 21.0+ (for code formatting)
+- flake8 3.8+ (for linting)
+- scikit-learn 1.0+ (for additional ML utilities)
+- tqdm 4.60+ (for progress bars)
 
 Install dependencies:
 ```bash
-pip3 install torch numpy matplotlib
+pip install -r requirements.txt
+```
+
+Or install manually:
+```bash
+pip install torch>=2.0.0 numpy>=1.21.0 matplotlib>=3.3.0
 ```
 
 ## File Formats

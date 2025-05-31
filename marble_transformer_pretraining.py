@@ -532,6 +532,9 @@ class TrainingPlotter:
         if self.plot_available:
             plt.ioff()  # Turn off interactive mode
             plt.close('all')
+
+
+def split_data(sentences: List[str], train_ratio: float = 0.7, val_ratio: float = 0.2):
     """Split data into train/validation/test sets"""
     n = len(sentences)
     train_end = int(n * train_ratio)
@@ -656,7 +659,9 @@ def main():
                 'val_accuracy': val_accuracy,
                 'val_perplexity': val_perplexity,
                 'epoch': epoch,
-                'completed_iterations': completed_iterations
+                'completed_iterations': completed_iterations,
+                'saved_at': datetime.now().isoformat(),
+                'timestamp': datetime.now().timestamp()
             }, os.path.join(args.output_dir, 'best_model.pt'))
             
             logger.info("  ✓ New best model saved!")
@@ -688,7 +693,8 @@ def main():
         'test_perplexity': test_perplexity,
         'vocab_size': len(vocab),
         'num_sentences': len(sentences),
-        'training_time': datetime.now().isoformat()
+        'training_time': datetime.now().isoformat(),
+        'timestamp': datetime.now().timestamp()
     }
     
     with open(os.path.join(args.output_dir, 'training_results.json'), 'w') as f:

@@ -1,8 +1,8 @@
 {
-  "test_loss": 0.7722480893135071,
-  "test_accuracy": 0.6010928961748634,
-  "test_perplexity": 2.1646270751953125,
+  "test_loss": 0.8062437176704407,
+  "test_accuracy": 0.6419753086419753,
+  "test_perplexity": 2.2394800186157227,
   "vocab_size": 13,
-  "num_sentences": 164,
-  "training_time": "2025-05-30T20:24:59.752654"
+  "num_sentences": 100,
+  "training_time": "2025-05-30T20:53:25.388194"
 }
