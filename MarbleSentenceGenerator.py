@@ -12,12 +12,14 @@ from typing import List, Set
 
 class MarbleSentenceGenerator:
     def __init__(self):
-        # Complete vocabulary (9 tokens)
+        # Complete vocabulary with marble colors
         self.vocabulary = {
             'pronoun': ['I'],
-            'states': ['static', 'move'],
-            'directions': ['East', 'West', 'North', 'South'],
-            'collision': ['bump'],
+            'colors': ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'black', 'white'],
+            'object': ['marble'],
+            'states': ['move'],
+            'directions': ['east', 'west', 'north', 'south'],
+            'collision': ['bump', 'into'],
             'connector': ['then']
         }
         
@@ -38,59 +40,45 @@ class MarbleSentenceGenerator:
         return random.random() < probability
 
     def generate_sentence(self) -> str:
-        """Generate a single random sentence"""
+        """Generate a single random sentence following the marble collision pattern"""
         sentence = []
         
-        # Step 1: Choose sentence starter
-        if self.random_event(self.probabilities['start_with_i']):
-            # Start with "I"
-            sentence.append('I')
+        # Pattern: "I [color] marble move [direction] bump into [color] marble move [direction]..."
+        sentence.append('I')
+        sentence.append(self.random_choice(self.vocabulary['colors']))
+        sentence.append('marble')
+        sentence.append('move')
+        sentence.append(self.random_choice(self.vocabulary['directions']))
+        
+        # Continue adding collision patterns until we reach close to 20 words
+        while len(sentence) < 18:  # Leave room for final marble and direction
+            sentence.append('bump')
+            sentence.append('into')
+            sentence.append(self.random_choice(self.vocabulary['colors']))
+            sentence.append('marble')
             
-            # Add state or movement
-            if self.random_event(0.5):
-                sentence.append('static')
-            else:
-                sentence.append('move')
-                sentence.append(self.random_choice(self.vocabulary['directions']))
-        else:
-            # Start with "Move [Direction]"
-            sentence.append('Move')
+            # Stop if we would exceed 20 words with another move/direction
+            if len(sentence) >= 16:
+                break
+                
+            sentence.append('move')
             sentence.append(self.random_choice(self.vocabulary['directions']))
         
-        # Step 2: Optionally add collision
-        if self.random_event(self.probabilities['include_collision']):
-            sentence.append('bump')
-        
-        # Step 3: Optionally add continuation
-        if self.random_event(self.probabilities['include_continuation']) and len(sentence) < 6:
-            sentence.append('then')
-            
-            # Add continuation action
-            if self.random_event(0.6):
-                sentence.append('move')
-                sentence.append(self.random_choice(self.vocabulary['directions']))
-            else:
-                sentence.append('static')
-            
-            # Optionally add another collision
-            if self.random_event(0.3) and len(sentence) < 7:
-                sentence.append('bump')
-        
-        # Step 4: Optionally end with state
-        if (self.random_event(self.probabilities['end_with_state']) and 
-            sentence[-1] != 'static' and 
-            len(sentence) < 8):
-            sentence.append('static')
+        # Ensure we don't exceed 20 words
+        if len(sentence) > 20:
+            sentence = sentence[:20]
         
         return ' '.join(sentence)
 
     def is_valid_sentence(self, sentence: str) -> bool:
-        """Validate sentence grammar"""
+        """Validate sentence grammar for marble collision format"""
         tokens = sentence.split(' ')
         
         # Check vocabulary compliance
         all_tokens = (
             self.vocabulary['pronoun'] +
+            self.vocabulary['colors'] +
+            self.vocabulary['object'] +
             self.vocabulary['states'] +
             self.vocabulary['directions'] +
             self.vocabulary['collision'] +
@@ -101,17 +89,20 @@ class MarbleSentenceGenerator:
             if token not in all_tokens:
                 return False
         
-        # Check sentence length bounds
-        if len(tokens) < 2 or len(tokens) > 8:
+        # Check sentence length bounds (max 20 words)
+        if len(tokens) < 5 or len(tokens) > 20:
             return False
         
-        # Check sentence must start with 'I' or 'Move'
-        if tokens[0] not in ['I', 'Move']:
+        # Check sentence must start with 'I'
+        if tokens[0] != 'I':
             return False
         
-        # Basic grammar checks
-        if tokens[0] == 'Move' and len(tokens) > 1:
-            if tokens[1] not in self.vocabulary['directions']:
+        # Check basic pattern: I [color] marble move [direction]
+        if len(tokens) >= 5:
+            if (tokens[1] not in self.vocabulary['colors'] or
+                tokens[2] != 'marble' or
+                tokens[3] != 'move' or
+                tokens[4] not in self.vocabulary['directions']):
                 return False
         
         return True
@@ -149,9 +140,16 @@ def save_sentences_to_file(sentences: List[str], filename: str = None) -> str:
     """Save sentences to a text file"""
     if filename is None:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"marble_sentences_{timestamp}.txt"
+        filename = f"datasets/dataset-{len(sentences)}_{timestamp}.txt"
+    elif not filename.startswith('datasets/'):
+        # Ensure files are saved to datasets directory
+        filename = f"datasets/{filename}"
     
     try:
+        # Ensure datasets directory exists
+        import os
+        os.makedirs('datasets', exist_ok=True)
+        
         with open(filename, 'w', encoding='utf-8') as file:
             file.write(f"Marble Language Sentences - Generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
             file.write("=" * 70 + "\n\n")

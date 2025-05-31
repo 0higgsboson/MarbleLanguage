@@ -7,6 +7,7 @@ Trains a transformer model on marble language datasets from text files
 import os
 import re
 import json
+import sys
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -22,9 +23,50 @@ try:
     import matplotlib.pyplot as plt
     import matplotlib.style as style
     PLOTTING_AVAILABLE = True
+    print("✓ matplotlib available - real-time plotting enabled")
+    
+    # Try to import our enhanced plotter and database
+    try:
+        from marble_language.training.plotter import RealTimeLossPlotter
+        ENHANCED_PLOTTING_AVAILABLE = True
+        print("✓ Enhanced real-time plotter available")
+    except ImportError as e:
+        ENHANCED_PLOTTING_AVAILABLE = False
+        print(f"Warning: Enhanced plotter not available: {e}")
+    
+    try:
+        from marble_language.utils.training_database import TrainingRunDatabase
+        DATABASE_AVAILABLE = True
+        print("✓ Training database available")
+    except ImportError as e:
+        DATABASE_AVAILABLE = False
+        print(f"Warning: Training database not available: {e}")
+        
 except ImportError:
     PLOTTING_AVAILABLE = False
-    print("Warning: matplotlib not available. Install with 'pip3 install matplotlib' for plotting functionality.")
+    ENHANCED_PLOTTING_AVAILABLE = False
+    DATABASE_AVAILABLE = False
+    TrainingRunDatabase = None
+    print("❌ matplotlib not installed - using terminal plotting fallback")
+    print("   For full GUI plotting: pip3 install matplotlib numpy")
+    print("   For full functionality: pip3 install torch matplotlib numpy tqdm")
+    
+    # Try to import terminal plotting fallback
+    try:
+        from simple_plotter import SimpleLossTracker
+        TERMINAL_PLOTTING_AVAILABLE = True
+        print("✓ Terminal plotting fallback available")
+    except ImportError:
+        TERMINAL_PLOTTING_AVAILABLE = False
+        print("❌ Terminal plotting fallback not available")
+
+# Progress bar imports
+try:
+    from tqdm import tqdm
+    TQDM_AVAILABLE = True
+except ImportError:
+    TQDM_AVAILABLE = False
+    print("Warning: tqdm not available. Install with 'pip install tqdm' for progress bars.")
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -169,15 +211,21 @@ class MarbleLanguageTrainer:
         self.criterion = nn.CrossEntropyLoss(ignore_index=vocab['[PAD]'])
         self.scheduler = optim.lr_scheduler.CosineAnnealingLR(self.optimizer, T_max=100)
     
-    def train_epoch(self, dataloader: DataLoader, device: torch.device, epoch: int = 0) -> float:
-        """Train for one epoch with detailed iteration logging"""
+    def train_epoch(self, dataloader: DataLoader, device: torch.device, epoch: int = 0, plotter=None, terminal_tracker=None, training_db=None, run_id=None) -> float:
+        """Train for one epoch with detailed iteration logging and real-time plotting"""
         self.model.train()
         total_loss = 0
         num_batches = len(dataloader)
         
         logger.info(f"Starting epoch {epoch + 1} with {num_batches} iterations (batches)")
         
-        for iteration, batch in enumerate(dataloader):
+        # Create progress bar if tqdm is available
+        if TQDM_AVAILABLE:
+            pbar = tqdm(dataloader, desc=f"Epoch {epoch+1} Training", leave=False)
+        else:
+            pbar = dataloader
+        
+        for iteration, batch in enumerate(pbar):
             input_ids = batch['input_ids'].to(device)
             target_ids = batch['target_ids'].to(device)
             attention_mask = batch['attention_mask'].to(device)
@@ -188,6 +236,13 @@ class MarbleLanguageTrainer:
             # Calculate loss
             loss = self.criterion(logits.view(-1, logits.size(-1)), target_ids.view(-1))
             
+            # Calculate batch accuracy
+            with torch.no_grad():
+                predictions = torch.argmax(logits, dim=-1)
+                mask = target_ids != self.vocab['[PAD]']
+                correct = (predictions == target_ids) & mask
+                batch_accuracy = correct.sum().item() / mask.sum().item() if mask.sum().item() > 0 else 0
+            
             # Backward pass
             self.optimizer.zero_grad()
             loss.backward()
@@ -195,19 +250,48 @@ class MarbleLanguageTrainer:
             self.optimizer.step()
             
             total_loss += loss.item()
+            avg_loss = total_loss / (iteration + 1)
+            lr = self.optimizer.param_groups[0]['lr']
             
-            # Log every 10 iterations or at the end
-            if (iteration + 1) % 10 == 0 or iteration == num_batches - 1:
-                avg_loss_so_far = total_loss / (iteration + 1)
-                lr = self.optimizer.param_groups[0]['lr']
+            # Global iteration number for plotting
+            global_iteration = epoch * num_batches + iteration
+            
+            # Update plotting systems
+            if plotter:
+                plotter.update_iteration(global_iteration, loss.item(), lr, batch_accuracy)
+            
+            if terminal_tracker:
+                terminal_tracker.update(global_iteration, loss.item(), lr, batch_accuracy)
+            
+            # Log to database every 10 iterations
+            if training_db and run_id and (iteration + 1) % 10 == 0:
+                iter_stats = {
+                    'train_loss': loss.item(),
+                    'batch_accuracy': batch_accuracy,
+                    'learning_rate': lr
+                }
+                training_db.log_iteration_stats(run_id, epoch, iteration, global_iteration, iter_stats)
+            
+            # Update progress bar if available
+            if TQDM_AVAILABLE:
+                pbar.set_postfix({
+                    'Loss': f'{loss.item():.4f}',
+                    'Avg': f'{avg_loss:.4f}',
+                    'LR': f'{lr:.6f}',
+                    'Acc': f'{batch_accuracy:.3f}'
+                })
+            
+            # Log every 10 iterations or at the end (only if no progress bar)
+            if not TQDM_AVAILABLE and ((iteration + 1) % 10 == 0 or iteration == num_batches - 1):
                 logger.info(f"  Iteration {iteration + 1}/{num_batches} | "
                           f"Loss: {loss.item():.4f} | "
-                          f"Avg Loss: {avg_loss_so_far:.4f} | "
-                          f"LR: {lr:.6f}")
+                          f"Avg Loss: {avg_loss:.4f} | "
+                          f"LR: {lr:.6f} | "
+                          f"Acc: {batch_accuracy:.3f}")
                 
-                # Show a sample prediction every 50 iterations
-                if (iteration + 1) % 50 == 0:
-                    self._log_sample_prediction(input_ids[0], target_ids[0], logits[0])
+            # Show a sample prediction every 50 iterations
+            if (iteration + 1) % 50 == 0:
+                self._log_sample_prediction(input_ids[0], target_ids[0], logits[0])
         
         return total_loss / num_batches
     
@@ -237,8 +321,14 @@ class MarbleLanguageTrainer:
         total_correct = 0
         total_tokens = 0
         
+        # Create progress bar if tqdm is available
+        if TQDM_AVAILABLE:
+            pbar = tqdm(dataloader, desc="Evaluating", leave=False)
+        else:
+            pbar = dataloader
+        
         with torch.no_grad():
-            for batch in dataloader:
+            for batch in pbar:
                 input_ids = batch['input_ids'].to(device)
                 target_ids = batch['target_ids'].to(device)
                 attention_mask = batch['attention_mask'].to(device)
@@ -255,6 +345,14 @@ class MarbleLanguageTrainer:
                 correct = (predictions == target_ids) & mask
                 total_correct += correct.sum().item()
                 total_tokens += mask.sum().item()
+                
+                # Update progress bar if available
+                if TQDM_AVAILABLE:
+                    current_acc = total_correct / total_tokens if total_tokens > 0 else 0
+                    pbar.set_postfix({
+                        'Loss': f'{loss.item():.4f}',
+                        'Acc': f'{current_acc:.4f}'
+                    })
         
         avg_loss = total_loss / len(dataloader)
         accuracy = total_correct / total_tokens if total_tokens > 0 else 0
@@ -551,13 +649,59 @@ def split_data(sentences: List[str], train_ratio: float = 0.7, val_ratio: float 
     return train_sentences, val_sentences, test_sentences
 
 
+def find_latest_dataset(datasets_dir: str = './datasets') -> List[str]:
+    """Find the latest dataset file(s) in the datasets directory"""
+    try:
+        if not os.path.exists(datasets_dir):
+            raise FileNotFoundError(f"Datasets directory not found: {datasets_dir}")
+        
+        # Get all .txt files in datasets directory
+        dataset_files = []
+        for file in os.listdir(datasets_dir):
+            if file.endswith('.txt') and (file.startswith('dataset-') or file.startswith('enhanced_dataset-')):
+                file_path = os.path.join(datasets_dir, file)
+                # Get file modification time and size
+                mtime = os.path.getmtime(file_path)
+                size = os.path.getsize(file_path)
+                dataset_files.append((file_path, mtime, file, size))
+        
+        if not dataset_files:
+            raise FileNotFoundError(f"No dataset files found in {datasets_dir}")
+        
+        # Sort by modification time (newest first)
+        dataset_files.sort(key=lambda x: x[1], reverse=True)
+        
+        # Show available datasets
+        logger.info("Available datasets in datasets directory:")
+        for i, (path, mtime, name, size) in enumerate(dataset_files[:5]):  # Show top 5
+            modified_time = datetime.fromtimestamp(mtime).strftime('%Y-%m-%d %H:%M:%S')
+            size_kb = size / 1024
+            marker = "📍 SELECTED" if i == 0 else "  "
+            logger.info(f"  {marker} {name} ({size_kb:.1f}KB, modified: {modified_time})")
+        
+        if len(dataset_files) > 5:
+            logger.info(f"  ... and {len(dataset_files) - 5} more datasets")
+        
+        # Return the most recent file
+        latest_file = dataset_files[0][0]
+        logger.info(f"Auto-selected: {dataset_files[0][2]}")
+        
+        return [latest_file]
+        
+    except Exception as e:
+        logger.error(f"Failed to find latest dataset: {e}")
+        raise
+
+
 def main():
     parser = argparse.ArgumentParser(description='Train marble language transformer')
-    parser.add_argument('data_files', nargs='+', help='Paths to marble language data files')
+    parser.add_argument('data_files', nargs='*', help='Paths to marble language data files (optional - uses latest dataset if not specified)')
     parser.add_argument('--epochs', type=int, default=50, help='Number of training epochs')
     parser.add_argument('--batch_size', type=int, default=32, help='Batch size')
     parser.add_argument('--output_dir', type=str, default='./marble_model', help='Output directory for model')
     parser.add_argument('--device', type=str, default='auto', help='Device to use (cpu/cuda/auto)')
+    parser.add_argument('--datasets_dir', type=str, default='./datasets', help='Directory containing dataset files')
+    parser.add_argument('--auto_latest', action='store_true', help='Automatically use the latest dataset (default behavior when no files specified)')
     
     args = parser.parse_args()
     
@@ -569,8 +713,36 @@ def main():
     
     logger.info(f"Using device: {device}")
     
-    # Parse data files
-    sentences = parse_marble_files(args.data_files)
+    # Handle data files - auto-select latest if none specified
+    if not args.data_files or args.auto_latest:
+        if not args.data_files:
+            logger.info("No dataset files specified, automatically selecting latest dataset...")
+        else:
+            logger.info("--auto_latest flag specified, selecting latest dataset...")
+        
+        try:
+            data_file_paths = find_latest_dataset(args.datasets_dir)
+        except Exception as e:
+            logger.error(f"Failed to auto-select dataset: {e}")
+            logger.info("Please specify dataset files manually or ensure datasets directory contains valid files")
+            sys.exit(1)
+    else:
+        # Parse manually specified data files
+        data_file_paths = []
+        for file_path in args.data_files:
+            if os.path.exists(file_path):
+                # Absolute or relative path that exists
+                data_file_paths.append(file_path)
+            elif os.path.exists(os.path.join(args.datasets_dir, file_path)):
+                # Filename in datasets directory
+                data_file_paths.append(os.path.join(args.datasets_dir, file_path))
+            else:
+                logger.error(f"Data file not found: {file_path}")
+                logger.info(f"Checked paths: {file_path}, {os.path.join(args.datasets_dir, file_path)}")
+                sys.exit(1)
+    
+    logger.info(f"Using dataset files: {[os.path.basename(f) for f in data_file_paths]}")
+    sentences = parse_marble_files(data_file_paths)
     
     if len(sentences) < 100:
         logger.warning(f"Only {len(sentences)} sentences found. Recommend at least 1000 for good training.")
@@ -600,10 +772,56 @@ def main():
     # Create trainer
     trainer = MarbleLanguageTrainer(model, vocab)
     
+    # Initialize plotting system
+    plotter = None
+    terminal_tracker = None
+    
+    if ENHANCED_PLOTTING_AVAILABLE:
+        plotter = RealTimeLossPlotter(args.output_dir, "MarbleTransformer", update_frequency=5)
+        logger.info("✓ Real-time GUI plotting enabled")
+    elif PLOTTING_AVAILABLE:
+        logger.info("✓ Basic matplotlib plotting available")
+    elif TERMINAL_PLOTTING_AVAILABLE:
+        terminal_tracker = SimpleLossTracker(update_frequency=5, display_frequency=25)
+        logger.info("✓ Terminal ASCII plotting enabled")
+        logger.info("  Loss plots will be displayed in terminal every 25 iterations")
+    else:
+        logger.info("❌ No plotting available - install matplotlib for visual plots")
+    
+    # Initialize training database
+    training_db = None
+    run_id = None
+    if DATABASE_AVAILABLE:
+        try:
+            training_db = TrainingRunDatabase()
+            
+            # Start new training run
+            training_config = {
+                'model_name': 'MarbleTransformer',
+                'dataset_files': args.data_files,
+                'num_sentences': len(sentences),
+                'vocab_size': len(vocab),
+                'model_parameters': sum(p.numel() for p in model.parameters()),
+                'epochs': args.epochs,
+                'batch_size': args.batch_size,
+                'learning_rate': trainer.optimizer.param_groups[0]['lr'],
+                'device': str(device)
+            }
+            
+            run_id = training_db.start_training_run(training_config)
+            logger.info(f"Training run logged to database: {run_id}")
+            
+        except Exception as e:
+            logger.warning(f"Failed to initialize training database: {e}")
+            training_db = None
+    else:
+        logger.info("Training database not available")
+    
     # Training loop
     best_val_loss = float('inf')
     patience = 10
     patience_counter = 0
+    training_start_time = datetime.now()
     
     os.makedirs(args.output_dir, exist_ok=True)
     
@@ -618,15 +836,52 @@ def main():
     logger.info(f"  Total sentence presentations: {total_iterations * args.batch_size}")
     logger.info("="*60)
     
-    for epoch in range(args.epochs):
+    # Create overall epoch progress bar if tqdm is available
+    if TQDM_AVAILABLE:
+        epoch_pbar = tqdm(range(args.epochs), desc="Training Progress")
+    else:
+        epoch_pbar = range(args.epochs)
+    
+    for epoch in epoch_pbar:
         logger.info(f"\nEPOCH {epoch+1}/{args.epochs}")
         logger.info("-" * 40)
         
         # Train
-        train_loss = trainer.train_epoch(train_loader, device, epoch)
+        epoch_start_time = datetime.now()
+        train_loss = trainer.train_epoch(train_loader, device, epoch, plotter, terminal_tracker, training_db, run_id)
         
         # Evaluate
         val_loss, val_accuracy, val_perplexity = trainer.evaluate(val_loader, device)
+        epoch_end_time = datetime.now()
+        epoch_time = (epoch_end_time - epoch_start_time).total_seconds()
+        
+        # Update epoch-level plots
+        lr = trainer.optimizer.param_groups[0]['lr']
+        if plotter:
+            plotter.update_epoch(epoch, train_loss, val_loss, val_accuracy, val_perplexity, lr)
+        
+        # Log epoch stats to database
+        if training_db and run_id:
+            epoch_stats = {
+                'train_loss': train_loss,
+                'val_loss': val_loss,
+                'val_accuracy': val_accuracy,
+                'val_perplexity': val_perplexity,
+                'learning_rate': lr
+            }
+            training_db.log_epoch_stats(run_id, epoch, epoch_stats, epoch_time)
+        
+        # Show terminal plot at end of each epoch for short training runs
+        if terminal_tracker and len(train_loader) < 50:  # If fewer than 50 iterations per epoch
+            terminal_tracker.display_progress()
+        
+        # Update overall progress bar if available
+        if TQDM_AVAILABLE:
+            epoch_pbar.set_postfix({
+                'Train Loss': f'{train_loss:.4f}',
+                'Val Loss': f'{val_loss:.4f}',
+                'Val Acc': f'{val_accuracy:.4f}'
+            })
         
         # Update learning rate
         trainer.scheduler.step()
@@ -686,6 +941,10 @@ def main():
         sentence = trainer.generate_sentence(device)
         logger.info(f"  {i+1}. {sentence}")
     
+    # Calculate total training time
+    training_end_time = datetime.now()
+    total_training_time = (training_end_time - training_start_time).total_seconds()
+    
     # Save final results
     results = {
         'test_loss': test_loss,
@@ -694,13 +953,63 @@ def main():
         'vocab_size': len(vocab),
         'num_sentences': len(sentences),
         'training_time': datetime.now().isoformat(),
-        'timestamp': datetime.now().timestamp()
+        'timestamp': datetime.now().timestamp(),
+        'total_training_time_seconds': total_training_time
     }
     
-    with open(os.path.join(args.output_dir, 'training_results.json'), 'w') as f:
+    results_path = os.path.join(args.output_dir, 'training_results.json')
+    with open(results_path, 'w') as f:
         json.dump(results, f, indent=2)
     
+    # Save plots if available
+    plots_path = None
+    if plotter:
+        try:
+            plotter.save_plots("final_training_plots")
+            plots_path = os.path.join(args.output_dir, "final_training_plots.png")
+        except Exception as e:
+            logger.warning(f"Failed to save plots: {e}")
+    
+    # Save terminal tracker data and create HTML plot
+    if terminal_tracker:
+        try:
+            data_file = terminal_tracker.save_final_data(args.output_dir)
+            # Create HTML plot
+            from simple_plotter import create_html_plot
+            html_file = data_file.replace('.json', '.html')
+            create_html_plot(data_file, html_file)
+            plots_path = html_file
+            logger.info(f"Terminal plot data saved. Open {html_file} in browser to view interactive plot.")
+        except Exception as e:
+            logger.warning(f"Failed to save terminal plots: {e}")
+    
+    # Complete the training run in database
+    if training_db and run_id:
+        try:
+            final_results = {
+                'best_epoch': len(trainer.scheduler.get_last_lr()) - patience_counter - 1,  # Approximate best epoch
+                'best_train_loss': best_val_loss,  # Using val loss as proxy for best
+                'best_val_loss': best_val_loss,
+                'best_val_accuracy': test_accuracy,  # Using test as proxy
+                'best_val_perplexity': test_perplexity,
+                'test_loss': test_loss,
+                'test_accuracy': test_accuracy,
+                'test_perplexity': test_perplexity,
+                'model_path': os.path.join(args.output_dir, 'best_model.pt'),
+                'results_path': results_path,
+                'plots_path': plots_path,
+                'notes': f"Training completed with {patience_counter} patience counter"
+            }
+            
+            early_stopped = patience_counter >= patience
+            training_db.complete_training_run(run_id, final_results, total_training_time, early_stopped)
+            logger.info(f"Training run completed in database: {run_id}")
+            
+        except Exception as e:
+            logger.warning(f"Failed to complete training run in database: {e}")
+    
     logger.info(f"Training completed. Model saved to {args.output_dir}")
+    logger.info(f"Total training time: {total_training_time:.2f} seconds ({total_training_time/60:.1f} minutes)")
 
 
 if __name__ == "__main__":

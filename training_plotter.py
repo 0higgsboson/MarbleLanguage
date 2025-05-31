@@ -211,5 +211,20 @@ def compare_multiple_runs(results_files: List[str]):
                 model_name = results.get('model_name', f'Model {i+1}')
                 color = colors[i % len(colors)]
                 
-                plt.plot(epochs, val_losses, color=color, linewidth=2, 
-                        label=f'{model_name} (Best:
+                best_loss = min(val_losses) if val_losses else None
+                if best_loss is not None:
+                    label = f'{model_name} (Best: {best_loss:.4f})'
+                else:
+                    label = f'{model_name} (No data)'
+                plt.plot(epochs, val_losses, color=color, linewidth=2, label=label)
+        except Exception as e:
+            print(f"Error loading {results_file}: {e}")
+            continue
+    
+    plt.xlabel('Epoch')
+    plt.ylabel('Validation Loss')
+    plt.title('Training Comparison - Validation Loss')
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.show()

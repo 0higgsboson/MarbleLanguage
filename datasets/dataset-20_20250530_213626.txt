@@ -1,0 +1,28 @@
+Marble Language Sentences - Generated on 2025-05-30 21:36:26
+======================================================================
+
+1. "I blue marble move south bump into pink marble move south bump into pink marble move west bump into purple"
+2. "I black marble move west bump into green marble move south bump into red marble move north bump into purple"
+3. "I black marble move west bump into pink marble move west bump into red marble move west bump into black"
+4. "I white marble move south bump into green marble move south bump into red marble move south bump into white"
+5. "I blue marble move south bump into green marble move north bump into pink marble move east bump into green"
+6. "I green marble move north bump into yellow marble move south bump into blue marble move north bump into purple"
+7. "I red marble move south bump into yellow marble move east bump into blue marble move south bump into red"
+8. "I purple marble move east bump into purple marble move south bump into blue marble move east bump into purple"
+9. "I white marble move east bump into orange marble move north bump into black marble move west bump into yellow"
+10. "I blue marble move south bump into yellow marble move east bump into blue marble move east bump into green"
+11. "I blue marble move east bump into pink marble move west bump into black marble move south bump into yellow"
+12. "I orange marble move east bump into red marble move west bump into red marble move south bump into purple"
+13. "I blue marble move west bump into red marble move east bump into purple marble move south bump into yellow"
+14. "I black marble move east bump into blue marble move north bump into white marble move south bump into orange"
+15. "I green marble move south bump into orange marble move east bump into white marble move north bump into black"
+16. "I red marble move north bump into orange marble move south bump into white marble move north bump into purple"
+17. "I green marble move east bump into black marble move east bump into yellow marble move north bump into blue"
+18. "I black marble move west bump into red marble move north bump into white marble move north bump into purple"
+19. "I black marble move north bump into purple marble move west bump into pink marble move east bump into red"
+20. "I purple marble move north bump into white marble move north bump into blue marble move north bump into black"
+
+Total sentences: 20
+
+Raw array format:
+['I blue marble move south bump into pink marble move south bump into pink marble move west bump into purple', 'I black marble move west bump into green marble move south bump into red marble move north bump into purple', 'I black marble move west bump into pink marble move west bump into red marble move west bump into black', 'I white marble move south bump into green marble move south bump into red marble move south bump into white', 'I blue marble move south bump into green marble move north bump into pink marble move east bump into green', 'I green marble move north bump into yellow marble move south bump into blue marble move north bump into purple', 'I red marble move south bump into yellow marble move east bump into blue marble move south bump into red', 'I purple marble move east bump into purple marble move south bump into blue marble move east bump into purple', 'I white marble move east bump into orange marble move north bump into black marble move west bump into yellow', 'I blue marble move south bump into yellow marble move east bump into blue marble move east bump into green', 'I blue marble move east bump into pink marble move west bump into black marble move south bump into yellow', 'I orange marble move east bump into red marble move west bump into red marble move south bump into purple', 'I blue marble move west bump into red marble move east bump into purple marble move south bump into yellow', 'I black marble move east bump into blue marble move north bump into white marble move south bump into orange', 'I green marble move south bump into orange marble move east bump into white marble move north bump into black', 'I red marble move north bump into orange marble move south bump into white marble move north bump into purple', 'I green marble move east bump into black marble move east bump into yellow marble move north bump into blue', 'I black marble move west bump into red marble move north bump into white marble move north bump into purple', 'I black marble move north bump into purple marble move west bump into pink marble move east bump into red', 'I purple marble move north bump into white marble move north bump into blue marble move north bump into black']

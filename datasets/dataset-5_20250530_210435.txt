@@ -1,0 +1,13 @@
+Marble Language Sentences - Generated on 2025-05-30 21:04:35
+======================================================================
+
+1. "I orange marble move south bump into red marble move north bump into white marble move north bump into pink"
+2. "I pink marble move north bump into green marble move south bump into purple marble move north bump into white"
+3. "I orange marble move west bump into blue marble move east bump into pink marble move west bump into white"
+4. "I pink marble move east bump into black marble move north bump into red marble move north bump into white"
+5. "I white marble move south bump into red marble move east bump into orange marble move north bump into black"
+
+Total sentences: 5
+
+Raw array format:
+['I orange marble move south bump into red marble move north bump into white marble move north bump into pink', 'I pink marble move north bump into green marble move south bump into purple marble move north bump into white', 'I orange marble move west bump into blue marble move east bump into pink marble move west bump into white', 'I pink marble move east bump into black marble move north bump into red marble move north bump into white', 'I white marble move south bump into red marble move east bump into orange marble move north bump into black']

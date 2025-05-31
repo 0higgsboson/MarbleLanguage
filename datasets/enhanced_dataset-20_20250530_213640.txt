@@ -1,0 +1,37 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-30 21:36:40
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 20
+  Unique colors used: 11
+  Wall collisions: 6
+  Marble collisions: 5
+  Average sentence length: 7.9 tokens
+
+Sentences:
+----------------------------------------
+1. "I white marble move east bump into red marble"
+2. "I red marble move west then blue marble move west"
+3. "I black marble move east"
+4. "I blue marble move east bump into left"
+5. "I brown marble move east bump into red marble"
+6. "I green marble move north bump into top"
+7. "I yellow marble move north"
+8. "I pink marble move east bump into left then blue marble move south"
+9. "I purple marble move north then red marble move south"
+10. "I brown marble move east bump into left"
+11. "I blue marble move north"
+12. "I gray marble move south"
+13. "I gray marble move north bump into bottom"
+14. "I green marble move east bump into left"
+15. "I purple marble move east bump into pink marble"
+16. "I purple marble move south then white marble move east"
+17. "I green marble move west bump into yellow marble"
+18. "I gray marble move east bump into black marble"
+19. "I cyan marble move east"
+20. "I black marble move north"
+
+Total sentences: 20
+
+Raw array format:
+['I white marble move east bump into red marble', 'I red marble move west then blue marble move west', 'I black marble move east', 'I blue marble move east bump into left', 'I brown marble move east bump into red marble', 'I green marble move north bump into top', 'I yellow marble move north', 'I pink marble move east bump into left then blue marble move south', 'I purple marble move north then red marble move south', 'I brown marble move east bump into left', 'I blue marble move north', 'I gray marble move south', 'I gray marble move north bump into bottom', 'I green marble move east bump into left', 'I purple marble move east bump into pink marble', 'I purple marble move south then white marble move east', 'I green marble move west bump into yellow marble', 'I gray marble move east bump into black marble', 'I cyan marble move east', 'I black marble move north']
