@@ -1,0 +1,1215 @@
+{
+  "timestamp": "20250531_015647",
+  "dataset_size": 3200,
+  "vocabulary_size": 40,
+  "training_history": {
+    "epochs": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "train_losses": [
+      2.6305069887530026,
+      2.195697437188612,
+      1.6946914913731055,
+      1.456167687610189,
+      0.9984315210605832,
+      1.0344481144269413,
+      0.6969071102471037,
+      0.6090559878117294,
+      0.6357794735399476,
+      0.36187254770544747
+    ],
+    "val_losses": [
+      2.636314788409316,
+      2.306447776529059,
+      2.0567549508135725,
+      1.7627341527878282,
+      1.5190735627973821,
+      1.377383511299575,
+      1.2996509667166618,
+      1.1591929535178747,
+      0.9095500641419071,
+      0.7753988419931259
+    ],
+    "test_losses": [
+      2.8357317810581195,
+      2.059995529921746,
+      2.0169249517296177,
+      1.514526301498973,
+      1.356952423810275,
+      1.4246149836232973,
+      1.210211200284191,
+      0.7861826605037563,
+      0.8162113833839904,
+      0.8489616270169993
+    ],
+    "accuracies": [
+      0.26255196577072043,
+      0.4029188607748331,
+      0.45509618792423684,
+      0.45069100832895437,
+      0.534677408442222,
+      0.6168468133701752,
+      0.6333170438261839,
+      0.7546013702212596,
+      0.7530260044334511,
+      0.8309860504878414
+    ],
+    "perplexities": [
+      6.2174146091863625,
+      4.946636117823334,
+      4.160494324669105,
+      3.393406242012015,
+      2.8660694374585174,
+      2.5979677308545783,
+      2.461693193671567,
+      2.233324600407508,
+      1.8784595685519996,
+      1.711663185866928
+    ],
+    "marble_stats": [
+      20,
+      7,
+      9,
+      7,
+      11,
+      9,
+      5,
+      5,
+      5,
+      9
+    ],
+    "iteration_data": [
+      {
+        "global_iteration": 0,
+        "epoch": 1,
+        "iteration": 1,
+        "loss": 2.6469424111278523,
+        "accuracy": 0.28810832929033847,
+        "learning_rate": 0.001,
+        "marbles": 20
+      },
+      {
+        "global_iteration": 1,
+        "epoch": 1,
+        "iteration": 2,
+        "loss": 2.609884692963232,
+        "accuracy": 0.29761619394539685,
+        "learning_rate": 0.001,
+        "marbles": 20
+      },
+      {
+        "global_iteration": 2,
+        "epoch": 1,
+        "iteration": 3,
+        "loss": 2.56908299551729,
+        "accuracy": 0.311771201702834,
+        "learning_rate": 0.001,
+        "marbles": 20
+      },
+      {
+        "global_iteration": 3,
+        "epoch": 1,
+        "iteration": 4,
+        "loss": 2.6581364304615276,
+        "accuracy": 0.2250535724404452,
+        "learning_rate": 0.001,
+        "marbles": 20
+      },
+      {
+        "global_iteration": 4,
+        "epoch": 1,
+        "iteration": 5,
+        "loss": 2.677186102991324,
+        "accuracy": 0.24833181076457514,
+        "learning_rate": 0.001,
+        "marbles": 20
+      },
+      {
+        "global_iteration": 5,
+        "epoch": 1,
+        "iteration": 6,
+        "loss": 2.598619233408378,
+        "accuracy": 0.23711379952574863,
+        "learning_rate": 0.001,
+        "marbles": 20
+      },
+      {
+        "global_iteration": 6,
+        "epoch": 1,
+        "iteration": 7,
+        "loss": 2.5322547642431,
+        "accuracy": 0.2773614570596993,
+        "learning_rate": 0.001,
+        "marbles": 20
+      },
+      {
+        "global_iteration": 7,
+        "epoch": 1,
+        "iteration": 8,
+        "loss": 2.6061050432662634,
+        "accuracy": 0.2682318101439777,
+        "learning_rate": 0.001,
+        "marbles": 20
+      },
+      {
+        "global_iteration": 8,
+        "epoch": 1,
+        "iteration": 9,
+        "loss": 2.6270582017291186,
+        "accuracy": 0.22216012281141206,
+        "learning_rate": 0.001,
+        "marbles": 20
+      },
+      {
+        "global_iteration": 9,
+        "epoch": 1,
+        "iteration": 10,
+        "loss": 2.5428566842475897,
+        "accuracy": 0.23450711932969637,
+        "learning_rate": 0.001,
+        "marbles": 20
+      },
+      {
+        "global_iteration": 10,
+        "epoch": 2,
+        "iteration": 1,
+        "loss": 2.147236029050226,
+        "accuracy": 0.3670685633334633,
+        "learning_rate": 0.00095,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 11,
+        "epoch": 2,
+        "iteration": 2,
+        "loss": 2.21494067873294,
+        "accuracy": 0.39930146749469414,
+        "learning_rate": 0.00095,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 12,
+        "epoch": 2,
+        "iteration": 3,
+        "loss": 2.1302989493658684,
+        "accuracy": 0.44141525381859337,
+        "learning_rate": 0.00095,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 13,
+        "epoch": 2,
+        "iteration": 4,
+        "loss": 2.2756918470060685,
+        "accuracy": 0.42038219463272297,
+        "learning_rate": 0.00095,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 14,
+        "epoch": 2,
+        "iteration": 5,
+        "loss": 2.2352044007564,
+        "accuracy": 0.37181392426649573,
+        "learning_rate": 0.00095,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 15,
+        "epoch": 2,
+        "iteration": 6,
+        "loss": 2.1345093555397447,
+        "accuracy": 0.44365455007826676,
+        "learning_rate": 0.00095,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 16,
+        "epoch": 2,
+        "iteration": 7,
+        "loss": 2.1013010758997117,
+        "accuracy": 0.3935748897261831,
+        "learning_rate": 0.00095,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 17,
+        "epoch": 2,
+        "iteration": 8,
+        "loss": 2.2188608656696163,
+        "accuracy": 0.4514432680347082,
+        "learning_rate": 0.00095,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 18,
+        "epoch": 2,
+        "iteration": 9,
+        "loss": 2.2137374834874413,
+        "accuracy": 0.4274263083822573,
+        "learning_rate": 0.00095,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 19,
+        "epoch": 2,
+        "iteration": 10,
+        "loss": 2.1647307733409242,
+        "accuracy": 0.35730521336303867,
+        "learning_rate": 0.00095,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 20,
+        "epoch": 3,
+        "iteration": 1,
+        "loss": 1.6655786342584151,
+        "accuracy": 0.43740092853885665,
+        "learning_rate": 0.0009025,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 21,
+        "epoch": 3,
+        "iteration": 2,
+        "loss": 1.6047481807219581,
+        "accuracy": 0.4713198453624303,
+        "learning_rate": 0.0009025,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 22,
+        "epoch": 3,
+        "iteration": 3,
+        "loss": 1.728192617884429,
+        "accuracy": 0.5042167044950862,
+        "learning_rate": 0.0009025,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 23,
+        "epoch": 3,
+        "iteration": 4,
+        "loss": 1.7204628914942985,
+        "accuracy": 0.44977351293085865,
+        "learning_rate": 0.0009025,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 24,
+        "epoch": 3,
+        "iteration": 5,
+        "loss": 1.6766453682537439,
+        "accuracy": 0.43858585136614164,
+        "learning_rate": 0.0009025,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 25,
+        "epoch": 3,
+        "iteration": 6,
+        "loss": 1.6517391361386582,
+        "accuracy": 0.47312499098216426,
+        "learning_rate": 0.0009025,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 26,
+        "epoch": 3,
+        "iteration": 7,
+        "loss": 1.7190730789734099,
+        "accuracy": 0.46483667834801395,
+        "learning_rate": 0.0009025,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 27,
+        "epoch": 3,
+        "iteration": 8,
+        "loss": 1.6738832158730936,
+        "accuracy": 0.43113945693548816,
+        "learning_rate": 0.0009025,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 28,
+        "epoch": 3,
+        "iteration": 9,
+        "loss": 1.6323339503078895,
+        "accuracy": 0.4989154141140035,
+        "learning_rate": 0.0009025,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 29,
+        "epoch": 3,
+        "iteration": 10,
+        "loss": 1.663954611447737,
+        "accuracy": 0.48180004689711214,
+        "learning_rate": 0.0009025,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 30,
+        "epoch": 4,
+        "iteration": 1,
+        "loss": 1.4019204232120992,
+        "accuracy": 0.4645958021362391,
+        "learning_rate": 0.000857375,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 31,
+        "epoch": 4,
+        "iteration": 2,
+        "loss": 1.4100824307868274,
+        "accuracy": 0.45212873399906467,
+        "learning_rate": 0.000857375,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 32,
+        "epoch": 4,
+        "iteration": 3,
+        "loss": 1.5142060633584444,
+        "accuracy": 0.445058872560723,
+        "learning_rate": 0.000857375,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 33,
+        "epoch": 4,
+        "iteration": 4,
+        "loss": 1.3989996333993984,
+        "accuracy": 0.4404167474099191,
+        "learning_rate": 0.000857375,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 34,
+        "epoch": 4,
+        "iteration": 5,
+        "loss": 1.3722162299842964,
+        "accuracy": 0.44158521303779386,
+        "learning_rate": 0.000857375,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 35,
+        "epoch": 4,
+        "iteration": 6,
+        "loss": 1.5024431406241754,
+        "accuracy": 0.46278916674095066,
+        "learning_rate": 0.000857375,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 36,
+        "epoch": 4,
+        "iteration": 7,
+        "loss": 1.543260574127225,
+        "accuracy": 0.4760271344228336,
+        "learning_rate": 0.000857375,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 37,
+        "epoch": 4,
+        "iteration": 8,
+        "loss": 1.360602245741257,
+        "accuracy": 0.4977343627495122,
+        "learning_rate": 0.000857375,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 38,
+        "epoch": 4,
+        "iteration": 9,
+        "loss": 1.3722345775184153,
+        "accuracy": 0.4024029809266225,
+        "learning_rate": 0.000857375,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 39,
+        "epoch": 4,
+        "iteration": 10,
+        "loss": 1.3990680042363508,
+        "accuracy": 0.4087793335035945,
+        "learning_rate": 0.000857375,
+        "marbles": 7
+      },
+      {
+        "global_iteration": 40,
+        "epoch": 5,
+        "iteration": 1,
+        "loss": 1.0794579352871543,
+        "accuracy": 0.5494606491493359,
+        "learning_rate": 0.0008145062499999999,
+        "marbles": 11
+      },
+      {
+        "global_iteration": 41,
+        "epoch": 5,
+        "iteration": 2,
+        "loss": 0.9063565625121037,
+        "accuracy": 0.5051004307290892,
+        "learning_rate": 0.0008145062499999999,
+        "marbles": 11
+      },
+      {
+        "global_iteration": 42,
+        "epoch": 5,
+        "iteration": 3,
+        "loss": 1.089354421210807,
+        "accuracy": 0.5375658305111657,
+        "learning_rate": 0.0008145062499999999,
+        "marbles": 11
+      },
+      {
+        "global_iteration": 43,
+        "epoch": 5,
+        "iteration": 4,
+        "loss": 1.0530732594760808,
+        "accuracy": 0.5310985409236478,
+        "learning_rate": 0.0008145062499999999,
+        "marbles": 11
+      },
+      {
+        "global_iteration": 44,
+        "epoch": 5,
+        "iteration": 5,
+        "loss": 1.0458096409099313,
+        "accuracy": 0.5351513527379276,
+        "learning_rate": 0.0008145062499999999,
+        "marbles": 11
+      },
+      {
+        "global_iteration": 45,
+        "epoch": 5,
+        "iteration": 6,
+        "loss": 0.9548776249081161,
+        "accuracy": 0.5113372508976053,
+        "learning_rate": 0.0008145062499999999,
+        "marbles": 11
+      },
+      {
+        "global_iteration": 46,
+        "epoch": 5,
+        "iteration": 7,
+        "loss": 1.042804991869611,
+        "accuracy": 0.5739044847759921,
+        "learning_rate": 0.0008145062499999999,
+        "marbles": 11
+      },
+      {
+        "global_iteration": 47,
+        "epoch": 5,
+        "iteration": 8,
+        "loss": 1.0107876104677658,
+        "accuracy": 0.515084376597461,
+        "learning_rate": 0.0008145062499999999,
+        "marbles": 11
+      },
+      {
+        "global_iteration": 48,
+        "epoch": 5,
+        "iteration": 9,
+        "loss": 1.088738243396892,
+        "accuracy": 0.5361492906371141,
+        "learning_rate": 0.0008145062499999999,
+        "marbles": 11
+      },
+      {
+        "global_iteration": 49,
+        "epoch": 5,
+        "iteration": 10,
+        "loss": 1.0075077989968746,
+        "accuracy": 0.5690184811553275,
+        "learning_rate": 0.0008145062499999999,
+        "marbles": 11
+      },
+      {
+        "global_iteration": 50,
+        "epoch": 6,
+        "iteration": 1,
+        "loss": 0.9787001216287564,
+        "accuracy": 0.5670726686210579,
+        "learning_rate": 0.0007737809374999998,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 51,
+        "epoch": 6,
+        "iteration": 2,
+        "loss": 0.9913192265171057,
+        "accuracy": 0.6468016358872171,
+        "learning_rate": 0.0007737809374999998,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 52,
+        "epoch": 6,
+        "iteration": 3,
+        "loss": 0.9380650876063711,
+        "accuracy": 0.6066715314503143,
+        "learning_rate": 0.0007737809374999998,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 53,
+        "epoch": 6,
+        "iteration": 4,
+        "loss": 0.9864107733802878,
+        "accuracy": 0.5848981158314512,
+        "learning_rate": 0.0007737809374999998,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 54,
+        "epoch": 6,
+        "iteration": 5,
+        "loss": 0.9800242625673374,
+        "accuracy": 0.6004532726930054,
+        "learning_rate": 0.0007737809374999998,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 55,
+        "epoch": 6,
+        "iteration": 6,
+        "loss": 1.0537336116495668,
+        "accuracy": 0.6486443211011205,
+        "learning_rate": 0.0007737809374999998,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 56,
+        "epoch": 6,
+        "iteration": 7,
+        "loss": 1.0375551643502088,
+        "accuracy": 0.665981822979109,
+        "learning_rate": 0.0007737809374999998,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 57,
+        "epoch": 6,
+        "iteration": 8,
+        "loss": 0.9485526953105725,
+        "accuracy": 0.656566251357558,
+        "learning_rate": 0.0007737809374999998,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 58,
+        "epoch": 6,
+        "iteration": 9,
+        "loss": 1.04541226436253,
+        "accuracy": 0.5913519729018373,
+        "learning_rate": 0.0007737809374999998,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 59,
+        "epoch": 6,
+        "iteration": 10,
+        "loss": 0.9402363326597224,
+        "accuracy": 0.5751605410911802,
+        "learning_rate": 0.0007737809374999998,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 60,
+        "epoch": 7,
+        "iteration": 1,
+        "loss": 0.649899348924507,
+        "accuracy": 0.6554051957761651,
+        "learning_rate": 0.0007350918906249999,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 61,
+        "epoch": 7,
+        "iteration": 2,
+        "loss": 0.6105777780317465,
+        "accuracy": 0.6672182106172382,
+        "learning_rate": 0.0007350918906249999,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 62,
+        "epoch": 7,
+        "iteration": 3,
+        "loss": 0.7469599793724455,
+        "accuracy": 0.6391076458452053,
+        "learning_rate": 0.0007350918906249999,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 63,
+        "epoch": 7,
+        "iteration": 4,
+        "loss": 0.778358063036114,
+        "accuracy": 0.6454877508618191,
+        "learning_rate": 0.0007350918906249999,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 64,
+        "epoch": 7,
+        "iteration": 5,
+        "loss": 0.6021511588852774,
+        "accuracy": 0.6185260685161476,
+        "learning_rate": 0.0007350918906249999,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 65,
+        "epoch": 7,
+        "iteration": 6,
+        "loss": 0.7864271691204826,
+        "accuracy": 0.6218969221471482,
+        "learning_rate": 0.0007350918906249999,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 66,
+        "epoch": 7,
+        "iteration": 7,
+        "loss": 0.6669900993189296,
+        "accuracy": 0.6558338214745196,
+        "learning_rate": 0.0007350918906249999,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 67,
+        "epoch": 7,
+        "iteration": 8,
+        "loss": 0.6084499991086747,
+        "accuracy": 0.6156862256466534,
+        "learning_rate": 0.0007350918906249999,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 68,
+        "epoch": 7,
+        "iteration": 9,
+        "loss": 0.603361171090362,
+        "accuracy": 0.6790255458037225,
+        "learning_rate": 0.0007350918906249999,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 69,
+        "epoch": 7,
+        "iteration": 10,
+        "loss": 0.7300952226552497,
+        "accuracy": 0.6512672182866734,
+        "learning_rate": 0.0007350918906249999,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 70,
+        "epoch": 8,
+        "iteration": 1,
+        "loss": 0.6867241630405356,
+        "accuracy": 0.7671735337180634,
+        "learning_rate": 0.0006983372960937497,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 71,
+        "epoch": 8,
+        "iteration": 2,
+        "loss": 0.6164201032688725,
+        "accuracy": 0.7753717520179605,
+        "learning_rate": 0.0006983372960937497,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 72,
+        "epoch": 8,
+        "iteration": 3,
+        "loss": 0.6332011532235269,
+        "accuracy": 0.7761360374019248,
+        "learning_rate": 0.0006983372960937497,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 73,
+        "epoch": 8,
+        "iteration": 4,
+        "loss": 0.6049170801333981,
+        "accuracy": 0.7815763695510873,
+        "learning_rate": 0.0006983372960937497,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 74,
+        "epoch": 8,
+        "iteration": 5,
+        "loss": 0.6287652356132423,
+        "accuracy": 0.8029077476188762,
+        "learning_rate": 0.0006983372960937497,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 75,
+        "epoch": 8,
+        "iteration": 6,
+        "loss": 0.585285465357183,
+        "accuracy": 0.7847059231726827,
+        "learning_rate": 0.0006983372960937497,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 76,
+        "epoch": 8,
+        "iteration": 7,
+        "loss": 0.5247407302182108,
+        "accuracy": 0.7235647138445717,
+        "learning_rate": 0.0006983372960937497,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 77,
+        "epoch": 8,
+        "iteration": 8,
+        "loss": 0.5988574809300153,
+        "accuracy": 0.737871634738968,
+        "learning_rate": 0.0006983372960937497,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 78,
+        "epoch": 8,
+        "iteration": 9,
+        "loss": 0.5509378124631664,
+        "accuracy": 0.7621118720004825,
+        "learning_rate": 0.0006983372960937497,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 79,
+        "epoch": 8,
+        "iteration": 10,
+        "loss": 0.5958856223715714,
+        "accuracy": 0.7493617727609352,
+        "learning_rate": 0.0006983372960937497,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 80,
+        "epoch": 9,
+        "iteration": 1,
+        "loss": 0.733723738195265,
+        "accuracy": 0.7143877434305921,
+        "learning_rate": 0.0006634204312890623,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 81,
+        "epoch": 9,
+        "iteration": 2,
+        "loss": 0.6979797353222934,
+        "accuracy": 0.7540217136413747,
+        "learning_rate": 0.0006634204312890623,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 82,
+        "epoch": 9,
+        "iteration": 3,
+        "loss": 0.5612946246023085,
+        "accuracy": 0.7170568146239402,
+        "learning_rate": 0.0006634204312890623,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 83,
+        "epoch": 9,
+        "iteration": 4,
+        "loss": 0.5625312279552483,
+        "accuracy": 0.7653454604924553,
+        "learning_rate": 0.0006634204312890623,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 84,
+        "epoch": 9,
+        "iteration": 5,
+        "loss": 0.5930654563240426,
+        "accuracy": 0.7083075744939535,
+        "learning_rate": 0.0006634204312890623,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 85,
+        "epoch": 9,
+        "iteration": 6,
+        "loss": 0.7299351423009894,
+        "accuracy": 0.7674048943654149,
+        "learning_rate": 0.0006634204312890623,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 86,
+        "epoch": 9,
+        "iteration": 7,
+        "loss": 0.6377163901934754,
+        "accuracy": 0.7791296096823833,
+        "learning_rate": 0.0006634204312890623,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 87,
+        "epoch": 9,
+        "iteration": 8,
+        "loss": 0.6637355616974856,
+        "accuracy": 0.7086524459463834,
+        "learning_rate": 0.0006634204312890623,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 88,
+        "epoch": 9,
+        "iteration": 9,
+        "loss": 0.5741393973898449,
+        "accuracy": 0.7716680047925649,
+        "learning_rate": 0.0006634204312890623,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 89,
+        "epoch": 9,
+        "iteration": 10,
+        "loss": 0.5685357081893162,
+        "accuracy": 0.7905109981974908,
+        "learning_rate": 0.0006634204312890623,
+        "marbles": 5
+      },
+      {
+        "global_iteration": 90,
+        "epoch": 10,
+        "iteration": 1,
+        "loss": 0.2671334187828007,
+        "accuracy": 0.8143791025647239,
+        "learning_rate": 0.0006302494097246091,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 91,
+        "epoch": 10,
+        "iteration": 2,
+        "loss": 0.42093595394729355,
+        "accuracy": 0.7915940369660711,
+        "learning_rate": 0.0006302494097246091,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 92,
+        "epoch": 10,
+        "iteration": 3,
+        "loss": 0.41338138547701675,
+        "accuracy": 0.8370094298244697,
+        "learning_rate": 0.0006302494097246091,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 93,
+        "epoch": 10,
+        "iteration": 4,
+        "loss": 0.34290245320157076,
+        "accuracy": 0.8319983723220382,
+        "learning_rate": 0.0006302494097246091,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 94,
+        "epoch": 10,
+        "iteration": 5,
+        "loss": 0.36704914460916976,
+        "accuracy": 0.8595963679484426,
+        "learning_rate": 0.0006302494097246091,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 95,
+        "epoch": 10,
+        "iteration": 6,
+        "loss": 0.4392496366589127,
+        "accuracy": 0.8353364499008709,
+        "learning_rate": 0.0006302494097246091,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 96,
+        "epoch": 10,
+        "iteration": 7,
+        "loss": 0.27765731368222096,
+        "accuracy": 0.81977245039085,
+        "learning_rate": 0.0006302494097246091,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 97,
+        "epoch": 10,
+        "iteration": 8,
+        "loss": 0.40121114098227817,
+        "accuracy": 0.8375747139704119,
+        "learning_rate": 0.0006302494097246091,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 98,
+        "epoch": 10,
+        "iteration": 9,
+        "loss": 0.30974964731149096,
+        "accuracy": 0.8745573002360983,
+        "learning_rate": 0.0006302494097246091,
+        "marbles": 9
+      },
+      {
+        "global_iteration": 99,
+        "epoch": 10,
+        "iteration": 10,
+        "loss": 0.38686067154001735,
+        "accuracy": 0.8561569865682238,
+        "learning_rate": 0.0006302494097246091,
+        "marbles": 9
+      }
+    ],
+    "epoch_stats": [
+      {
+        "epoch": 1,
+        "train_loss": 2.6305069887530026,
+        "val_loss": 2.636314788409316,
+        "test_loss": 2.8357317810581195,
+        "accuracy": 0.26255196577072043,
+        "perplexity": 6.2174146091863625,
+        "marbles": 20,
+        "learning_rate": 0.001,
+        "min_iter_loss": 2.5322547642431,
+        "max_iter_loss": 2.677186102991324,
+        "loss_variance": 0.002637088840992891
+      },
+      {
+        "epoch": 2,
+        "train_loss": 2.195697437188612,
+        "val_loss": 2.306447776529059,
+        "test_loss": 2.059995529921746,
+        "accuracy": 0.4029188607748331,
+        "perplexity": 4.946636117823334,
+        "marbles": 7,
+        "learning_rate": 0.00095,
+        "min_iter_loss": 2.1013010758997117,
+        "max_iter_loss": 2.2756918470060685,
+        "loss_variance": 0.002943125472554705
+      },
+      {
+        "epoch": 3,
+        "train_loss": 1.6946914913731055,
+        "val_loss": 2.0567549508135725,
+        "test_loss": 2.0169249517296177,
+        "accuracy": 0.45509618792423684,
+        "perplexity": 4.160494324669105,
+        "marbles": 9,
+        "learning_rate": 0.0009025,
+        "min_iter_loss": 1.6047481807219581,
+        "max_iter_loss": 1.728192617884429,
+        "loss_variance": 0.0018755080360271133
+      },
+      {
+        "epoch": 4,
+        "train_loss": 1.456167687610189,
+        "val_loss": 1.7627341527878282,
+        "test_loss": 1.514526301498973,
+        "accuracy": 0.45069100832895437,
+        "perplexity": 3.393406242012015,
+        "marbles": 7,
+        "learning_rate": 0.000857375,
+        "min_iter_loss": 1.360602245741257,
+        "max_iter_loss": 1.543260574127225,
+        "loss_variance": 0.004791558623460065
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.9984315210605832,
+        "val_loss": 1.5190735627973821,
+        "test_loss": 1.356952423810275,
+        "accuracy": 0.534677408442222,
+        "perplexity": 2.8660694374585174,
+        "marbles": 11,
+        "learning_rate": 0.0008145062499999999,
+        "min_iter_loss": 0.9063565625121037,
+        "max_iter_loss": 1.089354421210807,
+        "loss_variance": 0.004079676003081632
+      },
+      {
+        "epoch": 6,
+        "train_loss": 1.0344481144269413,
+        "val_loss": 1.377383511299575,
+        "test_loss": 1.4246149836232973,
+        "accuracy": 0.6168468133701752,
+        "perplexity": 2.5979677308545783,
+        "marbles": 9,
+        "learning_rate": 0.0007737809374999998,
+        "min_iter_loss": 0.9380650876063711,
+        "max_iter_loss": 1.0537336116495668,
+        "loss_variance": 0.003628284891361937
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.6969071102471037,
+        "val_loss": 1.2996509667166618,
+        "test_loss": 1.210211200284191,
+        "accuracy": 0.6333170438261839,
+        "perplexity": 2.461693193671567,
+        "marbles": 5,
+        "learning_rate": 0.0007350918906249999,
+        "min_iter_loss": 0.6021511588852774,
+        "max_iter_loss": 0.7864271691204826,
+        "loss_variance": 0.005436654349417136
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.6090559878117294,
+        "val_loss": 1.1591929535178747,
+        "test_loss": 0.7861826605037563,
+        "accuracy": 0.7546013702212596,
+        "perplexity": 2.233324600407508,
+        "marbles": 5,
+        "learning_rate": 0.0006983372960937497,
+        "min_iter_loss": 0.5247407302182108,
+        "max_iter_loss": 0.6867241630405356,
+        "loss_variance": 0.001840444043338643
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.6357794735399476,
+        "val_loss": 0.9095500641419071,
+        "test_loss": 0.8162113833839904,
+        "accuracy": 0.7530260044334511,
+        "perplexity": 1.8784595685519996,
+        "marbles": 5,
+        "learning_rate": 0.0006634204312890623,
+        "min_iter_loss": 0.5612946246023085,
+        "max_iter_loss": 0.733723738195265,
+        "loss_variance": 0.004417154445123819
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.36187254770544747,
+        "val_loss": 0.7753988419931259,
+        "test_loss": 0.8489616270169993,
+        "accuracy": 0.8309860504878414,
+        "perplexity": 1.711663185866928,
+        "marbles": 9,
+        "learning_rate": 0.0006302494097246091,
+        "min_iter_loss": 0.2671334187828007,
+        "max_iter_loss": 0.4392496366589127,
+        "loss_variance": 0.0033471958051228003
+      }
+    ],
+    "language_evolution": [
+      {
+        "epoch": 1,
+        "vocabulary_utilization": 0.391313492786906,
+        "avg_sentence_length": 19.749356195874963,
+        "collision_frequency": 0.5843730502144011,
+        "marble_diversity": 1.0,
+        "grammar_complexity": 0.3
+      },
+      {
+        "epoch": 2,
+        "vocabulary_utilization": 0.4761292873999535,
+        "avg_sentence_length": 21.175858720137335,
+        "collision_frequency": 0.5114881912723586,
+        "marble_diversity": 0.35,
+        "grammar_complexity": 0.36
+      },
+      {
+        "epoch": 3,
+        "vocabulary_utilization": 0.5019959081102178,
+        "avg_sentence_length": 20.45112721427902,
+        "collision_frequency": 0.5511999709892474,
+        "marble_diversity": 0.45,
+        "grammar_complexity": 0.42
+      },
+      {
+        "epoch": 4,
+        "vocabulary_utilization": 0.5011451938201612,
+        "avg_sentence_length": 20.344942995941334,
+        "collision_frequency": 0.5539615738324322,
+        "marble_diversity": 0.35,
+        "grammar_complexity": 0.48
+      },
+      {
+        "epoch": 5,
+        "vocabulary_utilization": 0.6365943640890044,
+        "avg_sentence_length": 22.921337023974214,
+        "collision_frequency": 0.5011005774293766,
+        "marble_diversity": 0.55,
+        "grammar_complexity": 0.54
+      },
+      {
+        "epoch": 6,
+        "vocabulary_utilization": 0.672592147512078,
+        "avg_sentence_length": 21.934390991889845,
+        "collision_frequency": 0.5017302296914289,
+        "marble_diversity": 0.45,
+        "grammar_complexity": 0.6
+      },
+      {
+        "epoch": 7,
+        "vocabulary_utilization": 0.682192337450881,
+        "avg_sentence_length": 22.682795446937533,
+        "collision_frequency": 0.47241035925420416,
+        "marble_diversity": 0.25,
+        "grammar_complexity": 0.6599999999999999
+      },
+      {
+        "epoch": 8,
+        "vocabulary_utilization": 0.7210816977326063,
+        "avg_sentence_length": 21.772597979606232,
+        "collision_frequency": 0.4455136069334127,
+        "marble_diversity": 0.25,
+        "grammar_complexity": 0.72
+      },
+      {
+        "epoch": 9,
+        "vocabulary_utilization": 0.7631151054737912,
+        "avg_sentence_length": 23.635946831156513,
+        "collision_frequency": 0.5397658790192691,
+        "marble_diversity": 0.25,
+        "grammar_complexity": 0.78
+      },
+      {
+        "epoch": 10,
+        "vocabulary_utilization": 0.8605392094637577,
+        "avg_sentence_length": 25.471330750391218,
+        "collision_frequency": 0.43644457179596546,
+        "marble_diversity": 0.45,
+        "grammar_complexity": 0.8400000000000001
+      }
+    ]
+  },
+  "final_metrics": {
+    "final_train_loss": 0.36187254770544747,
+    "final_val_loss": 0.7753988419931259,
+    "final_test_loss": 0.8489616270169993,
+    "final_accuracy": 0.8309860504878414,
+    "final_perplexity": 1.711663185866928,
+    "final_marbles": 9
+  }
+}

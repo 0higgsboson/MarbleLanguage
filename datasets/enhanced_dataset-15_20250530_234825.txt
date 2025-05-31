@@ -1,0 +1,32 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-30 23:48:25
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 15
+  Unique colors used: 11
+  Wall collisions: 0
+  Marble collisions: 0
+  Average sentence length: 8.5 tokens
+
+Sentences:
+----------------------------------------
+1. "I gold born move east bump right move west"
+2. "I white born move west bump left move east"
+3. "I teal born move west"
+4. "I coral born move east"
+5. "I red born move west bump left move east"
+6. "I red move south bump bottom died"
+7. "I silver born move west bump left move east then silver move east"
+8. "I black born move north bump top I orange move south then orange move north"
+9. "I teal move south then teal move east"
+10. "I brown born move west"
+11. "I blue born move north then blue move north"
+12. "I blue move north bump top I teal move south"
+13. "I silver move south bump bottom died"
+14. "I coral move west bump left move east"
+15. "I cyan born still bump left move east"
+
+Total sentences: 15
+
+Raw array format:
+['I gold born move east bump right move west', 'I white born move west bump left move east', 'I teal born move west', 'I coral born move east', 'I red born move west bump left move east', 'I red move south bump bottom died', 'I silver born move west bump left move east then silver move east', 'I black born move north bump top I orange move south then orange move north', 'I teal move south then teal move east', 'I brown born move west', 'I blue born move north then blue move north', 'I blue move north bump top I teal move south', 'I silver move south bump bottom died', 'I coral move west bump left move east', 'I cyan born still bump left move east']

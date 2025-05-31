@@ -1,0 +1,37 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-30 22:41:46
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 20
+  Unique colors used: 12
+  Wall collisions: 10
+  Marble collisions: 2
+  Average sentence length: 7.2 tokens
+
+Sentences:
+----------------------------------------
+1. "I cyan marble move south bump into brown marble"
+2. "I blue marble move north"
+3. "I black marble move west bump into green marble then purple marble move west"
+4. "I orange"
+5. "I white marble move north bump into left"
+6. "I brown marble move east bump into top I green"
+7. "I cyan marble move north bump into right then red marble move south"
+8. "I black marble move north bump into left"
+9. "I gray marble move west then blue marble move west"
+10. "I yellow"
+11. "I brown"
+12. "I cyan marble move west"
+13. "I red marble move west bump into left"
+14. "I white marble move east bump into right"
+15. "I yellow marble move east bump into bottom"
+16. "I purple"
+17. "I brown marble move north bump into right"
+18. "I pink marble move west bump into bottom"
+19. "I purple marble move west bump into top I brown"
+20. "I green marble move west"
+
+Total sentences: 20
+
+Raw array format:
+['I cyan marble move south bump into brown marble', 'I blue marble move north', 'I black marble move west bump into green marble then purple marble move west', 'I orange', 'I white marble move north bump into left', 'I brown marble move east bump into top I green', 'I cyan marble move north bump into right then red marble move south', 'I black marble move north bump into left', 'I gray marble move west then blue marble move west', 'I yellow', 'I brown', 'I cyan marble move west', 'I red marble move west bump into left', 'I white marble move east bump into right', 'I yellow marble move east bump into bottom', 'I purple', 'I brown marble move north bump into right', 'I pink marble move west bump into bottom', 'I purple marble move west bump into top I brown', 'I green marble move west']

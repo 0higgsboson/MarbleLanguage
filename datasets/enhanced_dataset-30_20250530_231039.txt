@@ -1,0 +1,47 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-30 23:10:39
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 30
+  Unique colors used: 20
+  Wall collisions: 0
+  Marble collisions: 0
+  Average sentence length: 6.7 tokens
+
+Sentences:
+----------------------------------------
+1. ""
+2. "I brown move north"
+3. "I silver move west bump top I white"
+4. "I purple move east bump right then purple move south"
+5. "I purple move east bump red move east"
+6. "I green move east bump navy move south"
+7. "I blue move west bump lime move south"
+8. "I lime move south bump top I red"
+9. "I orange still bump bottom"
+10. "I silver move north bump purple move south then gray move south"
+11. "I teal move south bump left"
+12. "I gray move south bump right then red move east"
+13. "I violet move south"
+14. "I lime move west bump gray move north"
+15. "I cyan move east"
+16. "I black move east then indigo move south"
+17. "I indigo move west"
+18. "I yellow move west bump red move north"
+19. "I navy move south bump violet move east"
+20. "I coral still bump right then yellow move west"
+21. "I gold move north then red move east"
+22. "I pink still"
+23. "I gold move west bump bottom"
+24. "I violet move east bump bottom"
+25. "I coral still"
+26. "I orange move south bump bottom"
+27. "I purple move west bump black move west"
+28. "I red move north bump bottom"
+29. "I red move west bump top I blue"
+30. "I navy move south bump black move east"
+
+Total sentences: 30
+
+Raw array format:
+['', 'I brown move north', 'I silver move west bump top I white', 'I purple move east bump right then purple move south', 'I purple move east bump red move east', 'I green move east bump navy move south', 'I blue move west bump lime move south', 'I lime move south bump top I red', 'I orange still bump bottom', 'I silver move north bump purple move south then gray move south', 'I teal move south bump left', 'I gray move south bump right then red move east', 'I violet move south', 'I lime move west bump gray move north', 'I cyan move east', 'I black move east then indigo move south', 'I indigo move west', 'I yellow move west bump red move north', 'I navy move south bump violet move east', 'I coral still bump right then yellow move west', 'I gold move north then red move east', 'I pink still', 'I gold move west bump bottom', 'I violet move east bump bottom', 'I coral still', 'I orange move south bump bottom', 'I purple move west bump black move west', 'I red move north bump bottom', 'I red move west bump top I blue', 'I navy move south bump black move east']

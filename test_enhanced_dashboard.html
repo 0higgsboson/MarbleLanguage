@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Marble Language Training Dashboard - Live</title>
+    <meta http-equiv="refresh" content="3">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background-color: #f8f9fa;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .status { 
+            background: #e8f5e8; 
+            padding: 15px; 
+            border-radius: 8px; 
+            margin: 15px 0; 
+            border-left: 4px solid #28a745;
+        }
+        .live-indicator { 
+            color: #00aa00; 
+            font-weight: bold; 
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        .plot-container {
+            background: white;
+            border-radius: 8px;
+            margin: 20px 0;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .plot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .plot-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 5px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎯 Marble Language Training Dashboard <span class="live-indicator">● LIVE</span></h1>
+        <div class="status">
+            🔄 Auto-refreshing every 3 seconds | Last updated: 22:45:39 | 
+            📊 Training Progress: 20 iterations completed
+        </div>
+    </div>
+
+    <!-- Current Training Statistics -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value">20</div>
+            <div class="stat-label">Iterations</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">0.1000</div>
+            <div class="stat-label">Best Loss</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">0.1000</div>
+            <div class="stat-label">Current Loss</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value">0</div>
+            <div class="stat-label">Total Runs</div>
+        </div>
+    </div>
+
+    <!-- Current Training Loss Plot -->
+    <div class="plot-container">
+        <div class="plot-title">📈 Current Training Session - Loss Over Iterations</div>
+        <div id="currentLossPlot" style="width:100%;height:400px;"></div>
+    </div>
+
+    <!-- Current Training Details Grid -->
+    <div class="plot-grid">
+        <div class="plot-container">
+            <div class="plot-title">🎯 Training Accuracy</div>
+            <div id="currentAccuracyPlot" style="width:100%;height:300px;"></div>
+        </div>
+        <div class="plot-container">
+            <div class="plot-title">📚 Learning Rate Schedule</div>
+            <div id="currentLRPlot" style="width:100%;height:300px;"></div>
+        </div>
+    </div>
+
+    <!-- Database-Driven Historical Plots -->
+    <div class="plot-container">
+        <div class="plot-title">📊 Epoch Statistics - Training Progress Over Epochs</div>
+        <div id="epochStatsPlot" style="width:100%;height:400px;"></div>
+    </div>
+
+    <div class="plot-container">
+        <div class="plot-title">🔍 Detailed Iteration Statistics - High-Resolution Loss</div>
+        <div id="iterationStatsPlot" style="width:100%;height:400px;"></div>
+    </div>
+
+    <div class="plot-container">
+        <div class="plot-title">🏆 Training Runs Comparison - Performance Across Runs</div>
+        <div id="runsComparisonPlot" style="width:100%;height:400px;"></div>
+    </div>
+
+    <div class="plot-container">
+        <div class="plot-title">🧬 Language Evolution - Vocabulary & Rules Changes</div>
+        <div id="languageEvolutionPlot" style="width:100%;height:400px;"></div>
+    </div>
+
+    <div class="plot-container">
+        <div class="plot-title">🎯 Marble Lifecycle - Alive Marbles Over Training</div>
+        <div id="marbleLifecyclePlot" style="width:100%;height:400px;"></div>
+    </div>
+
+    <script>
+        // Current training session plots
+        var currentLossTrace = {
+            x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+            y: [2.0, 1.9, 1.8, 1.7, 1.6, 1.5, 1.4, 1.2999999999999998, 1.2, 1.1, 1.0, 0.8999999999999999, 0.7999999999999998, 0.7, 0.5999999999999999, 0.5, 0.3999999999999999, 0.2999999999999998, 0.19999999999999996, 0.09999999999999987],
+            type: 'scatter',
+            mode: 'lines+markers',
+            name: 'Training Loss',
+            line: {color: '#667eea', width: 3},
+            marker: {size: 4}
+        };
+        
+        var currentLossLayout = {
+            title: 'Loss Progression (Current Session)',
+            xaxis: {title: 'Iteration'},
+            yaxis: {title: 'Loss'},
+            showlegend: true,
+            template: 'plotly_white'
+        };
+        
+        Plotly.newPlot('currentLossPlot', [currentLossTrace], currentLossLayout);
+
+        // Current accuracy plot
+        var currentAccuracyTrace = {x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], y: [0.3, 0.32999999999999996, 0.36, 0.39, 0.42, 0.44999999999999996, 0.48, 0.51, 0.54, 0.5700000000000001, 0.6, 0.6299999999999999, 0.6599999999999999, 0.69, 0.72, 0.75, 0.78, 0.81, 0.8400000000000001, 0.8699999999999999], type: "scatter", mode: "lines+markers", name: "Accuracy", line: {color: "#28a745", width: 2}};
+        
+        var currentAccuracyLayout = {
+            title: 'Training Accuracy',
+            xaxis: {title: 'Iteration'},
+            yaxis: {title: 'Accuracy', range: [0, 1]},
+            showlegend: false,
+            template: 'plotly_white'
+        };
+        
+        Plotly.newPlot('currentAccuracyPlot', [currentAccuracyTrace], currentAccuracyLayout);
+
+        // Current learning rate plot
+        var currentLRTrace = {x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], y: [0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001, 0.001], type: "scatter", mode: "lines", name: "Learning Rate", line: {color: "#fd7e14", width: 2}};
+        
+        var currentLRLayout = {
+            title: 'Learning Rate Schedule',
+            xaxis: {title: 'Iteration'},
+            yaxis: {title: 'Learning Rate', type: 'log'},
+            showlegend: false,
+            template: 'plotly_white'
+        };
+        
+        Plotly.newPlot('currentLRPlot', [currentLRTrace], currentLRLayout);
+
+        // Database-driven plots
+        
+        // No epoch data available
+        var epochData = [{x: [0], y: [0], type: 'scatter', name: 'No Data'}];
+        var epochLayout = {title: 'No Epoch Data Available', template: 'plotly_white'};
+        Plotly.newPlot('epochStatsPlot', epochData, epochLayout);
+        
+        
+        // No iteration data available
+        var iterData = [{x: [0], y: [0], type: 'scatter', name: 'No Data'}];
+        var iterLayout = {title: 'No Iteration Data Available', template: 'plotly_white'};
+        Plotly.newPlot('iterationStatsPlot', iterData, iterLayout);
+        
+        
+        // No runs data available
+        var runsData = [{x: [0], y: [0], type: 'scatter', name: 'No Data'}];
+        var runsLayout = {title: 'No Training Runs Data Available', template: 'plotly_white'};
+        Plotly.newPlot('runsComparisonPlot', runsData, runsLayout);
+        
+        
+        // No evolution data available
+        var evolData = [{x: [0], y: [0], type: 'scatter', name: 'No Data'}];
+        var evolLayout = {title: 'No Language Evolution Data Available', template: 'plotly_white'};
+        Plotly.newPlot('languageEvolutionPlot', evolData, evolLayout);
+        
+        
+        var marbleLifecycleTrace = {
+            x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+            y: [1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+            type: 'scatter',
+            mode: 'lines+markers',
+            name: 'Alive Marbles',
+            line: {color: '#e74c3c', width: 3},
+            marker: {size: 6},
+            fill: 'tonexty',
+            fillcolor: 'rgba(231, 76, 60, 0.1)'
+        };
+        
+        // Add annotations for key events
+        var annotations = [];
+        
+        var marbleLayout = {
+            title: 'Marble Population Over Training',
+            xaxis: {title: 'Iteration'},
+            yaxis: {title: 'Number of Alive Marbles', range: [0, Math.max(...[1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]) + 2]},
+            showlegend: true,
+            template: 'plotly_white',
+            annotations: annotations,
+            hovermode: 'x unified'
+        };
+        
+        Plotly.newPlot('marbleLifecyclePlot', [marbleLifecycleTrace], marbleLayout);
+    
+    </script>
+
+    <div style="margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+        <h3>📋 Training Information</h3>
+        <ul>
+            <li><strong>Current Session:</strong> 20 iterations, Loss: 0.1000</li>
+            <li><strong>Database Status:</strong> ❌ Database query failed: near "is": syntax error</li>
+            <li><strong>Total Historical Runs:</strong> 0</li>
+            <li><strong>Generated:</strong> 2025-05-30T22:45:39.956443</li>
+            <li><strong>Auto-refresh:</strong> Every 3 seconds</li>
+        </ul>
+    </div>
+</body>
+</html>

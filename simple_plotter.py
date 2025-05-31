@@ -21,15 +21,29 @@ class TerminalPlotter:
             'iterations': [],
             'losses': [],
             'accuracies': [],
-            'learning_rates': []
+            'learning_rates': [],
+            'alive_marbles': []  # Track alive marbles over time
         }
+        self.marble_population = 20  # Start with 20 marbles
+        self.ecosystem_finite = False  # Track if any marble has died
     
-    def add_point(self, iteration: int, loss: float, accuracy: float = None, lr: float = None):
+    def add_point(self, iteration: int, loss: float, accuracy: float = None, lr: float = None, alive_marbles: int = None):
         """Add a data point"""
         self.data['iterations'].append(iteration)
         self.data['losses'].append(loss)
         self.data['accuracies'].append(accuracy or 0.0)
         self.data['learning_rates'].append(lr or 0.0)
+        
+        # Simulate finite marble ecosystem if not provided
+        if alive_marbles is None:
+            # Finite ecosystem: start with 20, can only decrease
+            if iteration % 30 == 0 and self.marble_population > 1:
+                self.marble_population -= 1  # Marble destroyed by bottom wall
+                self.ecosystem_finite = True  # Mark ecosystem as finite
+            # No new marbles can be created once any die
+            alive_marbles = max(0, self.marble_population)
+        
+        self.data['alive_marbles'].append(alive_marbles)
     
     def plot_loss(self) -> str:
         """Create ASCII plot of loss over iterations"""
@@ -144,13 +158,13 @@ class SimpleLossTracker:
         self.current_html_file = None
         self.html_update_frequency = 15  # Update HTML every 15 iterations
     
-    def update(self, iteration: int, loss: float, lr: float = None, accuracy: float = None):
+    def update(self, iteration: int, loss: float, lr: float = None, accuracy: float = None, alive_marbles: int = None):
         """Update with new training data"""
         self.iteration_count += 1
         
         # Add data point
         if self.iteration_count % self.update_frequency == 0:
-            self.plotter.add_point(iteration, loss, accuracy, lr)
+            self.plotter.add_point(iteration, loss, accuracy, lr, alive_marbles)
         
         # Display plot periodically - more frequent for short runs
         display_interval = self.display_frequency
@@ -229,8 +243,13 @@ class SimpleLossTracker:
             with open(temp_json, 'w') as f:
                 json.dump(data_with_timestamp, f, indent=2)
             
-            # Update the HTML file
-            create_html_plot(temp_json, self.current_html_file)
+            # Update the HTML file with enhanced dashboard
+            try:
+                from enhanced_html_plotter import create_enhanced_html_plot
+                create_enhanced_html_plot(temp_json, self.current_html_file)
+            except ImportError:
+                # Fallback to basic plotter
+                create_html_plot(temp_json, self.current_html_file)
             
             # Clean up temp file
             os.remove(temp_json)
@@ -262,6 +281,15 @@ class SimpleLossTracker:
 
 def create_html_plot(data_file: str, output_file: str = None):
     """Create an HTML plot from saved training data with auto-refresh"""
+    # Try to use enhanced plotter first
+    try:
+        from enhanced_html_plotter import create_enhanced_html_plot
+        create_enhanced_html_plot(data_file, output_file)
+        return
+    except ImportError:
+        # Fallback to basic plotter
+        pass
+    
     with open(data_file, 'r') as f:
         data = json.load(f)
     

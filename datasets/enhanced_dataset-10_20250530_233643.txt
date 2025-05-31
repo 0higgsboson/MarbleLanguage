@@ -1,0 +1,27 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-30 23:36:43
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 10
+  Unique colors used: 10
+  Wall collisions: 0
+  Marble collisions: 0
+  Average sentence length: 7.3 tokens
+
+Sentences:
+----------------------------------------
+1. "I purple move north bump right"
+2. "I gold move east"
+3. "I navy move east bump right"
+4. "I red move north bump top I blue"
+5. "I gray move north bump right"
+6. "I violet move north bump top I gray"
+7. "I cyan move south bump bottom"
+8. "I lime move west bump right then lime move north"
+9. "I indigo move west bump left then indigo move south"
+10. "I navy still bump left then navy move north"
+
+Total sentences: 10
+
+Raw array format:
+['I purple move north bump right', 'I gold move east', 'I navy move east bump right', 'I red move north bump top I blue', 'I gray move north bump right', 'I violet move north bump top I gray', 'I cyan move south bump bottom', 'I lime move west bump right then lime move north', 'I indigo move west bump left then indigo move south', 'I navy still bump left then navy move north']

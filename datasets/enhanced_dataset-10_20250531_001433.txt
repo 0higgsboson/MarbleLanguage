@@ -1,0 +1,27 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-31 00:14:33
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 10
+  Unique colors used: 7
+  Wall collisions: 0
+  Marble collisions: 0
+  Average sentence length: 9.9 tokens
+
+Sentences:
+----------------------------------------
+1. "I coral born still bump bottom died | 19"
+2. "I green born move east bump right move west then green move south | 19"
+3. "I purple born move south | 19"
+4. "I green move south bump bottom died | 18"
+5. "I brown born move west then brown move north | 18"
+6. "I brown move west bump left move east | 18"
+7. "I purple still bump left move east | 18"
+8. "I purple still bump top I gray move south then gray move east | 18"
+9. "I blue born move west | 18"
+10. "I violet born move south | 18"
+
+Total sentences: 10
+
+Raw array format:
+['I coral born still bump bottom died | 19', 'I green born move east bump right move west then green move south | 19', 'I purple born move south | 19', 'I green move south bump bottom died | 18', 'I brown born move west then brown move north | 18', 'I brown move west bump left move east | 18', 'I purple still bump left move east | 18', 'I purple still bump top I gray move south then gray move east | 18', 'I blue born move west | 18', 'I violet born move south | 18']

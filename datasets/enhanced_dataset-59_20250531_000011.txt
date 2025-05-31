@@ -1,0 +1,76 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-31 00:00:11
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 59
+  Unique colors used: 20
+  Wall collisions: 0
+  Marble collisions: 0
+  Average sentence length: 8.1 tokens
+
+Sentences:
+----------------------------------------
+1. "I navy born move east then navy move north"
+2. "I blue born move east bump right move west"
+3. "I gray born move north"
+4. "I green born move east bump right move west then green move north"
+5. "I gray move north"
+6. "I brown born move north bump top I gold move south"
+7. "I lime born move west bump left move east"
+8. "I green move north bump top I violet move south"
+9. "I black born still bump left move east"
+10. "I white born still bump left move east"
+11. "I indigo born move south"
+12. "I blue move south bump bottom died"
+13. "I red born move east bump right move west"
+14. "I gold born move west"
+15. "I pink born still"
+16. "I gold move south bump bottom died"
+17. "I black move south then black move east"
+18. "I indigo move west bump left move east then indigo move north"
+19. "I coral born move north then coral move south"
+20. "I navy still bump top I pink move south"
+21. "I gray move north bump top I teal move south"
+22. "I cyan born move north bump top I purple move south"
+23. "I coral move north bump top I purple move south"
+24. "I black move north bump top I teal move south"
+25. "I pink still bump left move east"
+26. "I violet born still bump right move west"
+27. "I yellow born move west then yellow move south"
+28. "I indigo move south bump bottom died"
+29. "I yellow move north then yellow move south"
+30. "I violet move east"
+31. "I purple born move north bump top I lime move south"
+32. "I violet still bump bottom died"
+33. "I pink move north bump top I lime move south then lime move east"
+34. "I yellow move north then yellow move east"
+35. "I white move north"
+36. "I yellow move north bump top I lime move south"
+37. "I white move east bump right move west"
+38. "I white still bump left move east"
+39. "I white move west bump left move east then white move west"
+40. "I lime move west"
+41. "I orange born move south then orange move south"
+42. "I silver born still bump bottom died"
+43. "I lime move east bump right move west"
+44. "I orange still then orange move east"
+45. "I lime move east bump right move west"
+46. "I orange move east bump right move west"
+47. "I orange move north bump top I lime move south then lime move north"
+48. "I red move east"
+49. "I red move north bump top I teal move south"
+50. "I teal born still bump left move east"
+51. "I teal move south"
+52. "I white move west bump left move east then white move east"
+53. "I teal still then teal move west"
+54. "I lime move south"
+55. "I teal move west bump left move east"
+56. "I teal move east bump right move west"
+57. "I lime move south bump bottom died"
+58. "I white move south bump bottom died"
+59. "I teal move south bump bottom died"
+
+Total sentences: 59
+
+Raw array format:
+['I navy born move east then navy move north', 'I blue born move east bump right move west', 'I gray born move north', 'I green born move east bump right move west then green move north', 'I gray move north', 'I brown born move north bump top I gold move south', 'I lime born move west bump left move east', 'I green move north bump top I violet move south', 'I black born still bump left move east', 'I white born still bump left move east', 'I indigo born move south', 'I blue move south bump bottom died', 'I red born move east bump right move west', 'I gold born move west', 'I pink born still', 'I gold move south bump bottom died', 'I black move south then black move east', 'I indigo move west bump left move east then indigo move north', 'I coral born move north then coral move south', 'I navy still bump top I pink move south', 'I gray move north bump top I teal move south', 'I cyan born move north bump top I purple move south', 'I coral move north bump top I purple move south', 'I black move north bump top I teal move south', 'I pink still bump left move east', 'I violet born still bump right move west', 'I yellow born move west then yellow move south', 'I indigo move south bump bottom died', 'I yellow move north then yellow move south', 'I violet move east', 'I purple born move north bump top I lime move south', 'I violet still bump bottom died', 'I pink move north bump top I lime move south then lime move east', 'I yellow move north then yellow move east', 'I white move north', 'I yellow move north bump top I lime move south', 'I white move east bump right move west', 'I white still bump left move east', 'I white move west bump left move east then white move west', 'I lime move west', 'I orange born move south then orange move south', 'I silver born still bump bottom died', 'I lime move east bump right move west', 'I orange still then orange move east', 'I lime move east bump right move west', 'I orange move east bump right move west', 'I orange move north bump top I lime move south then lime move north', 'I red move east', 'I red move north bump top I teal move south', 'I teal born still bump left move east', 'I teal move south', 'I white move west bump left move east then white move east', 'I teal still then teal move west', 'I lime move south', 'I teal move west bump left move east', 'I teal move east bump right move west', 'I lime move south bump bottom died', 'I white move south bump bottom died', 'I teal move south bump bottom died']

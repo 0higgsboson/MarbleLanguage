@@ -1,0 +1,20 @@
+{
+  "timestamp": "20250531_002617",
+  "total_sentences": 10,
+  "alive_marbles": 20,
+  "dead_marbles": 0,
+  "destroyed_marbles": [],
+  "ecosystem_finite": false,
+  "sentences": [
+    "I pink born move east bump right move west bump bottom then pink move west bump right move west bump bottom | 20",
+    "I white born move north bump top I navy move south then navy move north bump right move west then white move west | 20",
+    "I violet born move north bump top I black move south bump left move east bump black marble move north then violet move east | 20",
+    "I black born move north bump top I yellow move south bump yellow marble move south then black move west bump yellow marble move west | 20",
+    "I yellow born still bump left move east then yellow move north then yellow move east bump left move east | 20",
+    "I purple born move west bump left move east bump left move east then purple move east then purple move north | 20",
+    "I pink still bump left move east bump left move east then pink move west then pink move south then pink move east | 20",
+    "I pink move north bump top I cyan move south bump top move south then pink move north then pink move east | 20",
+    "I black move south bump left move east then black move west bump right move west bump right move west | 20",
+    "I indigo born still bump left move east then indigo move east bump right move west then indigo move east | 20"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "timestamp": "20250531_002616",
+  "total_sentences": 5,
+  "alive_marbles": 19,
+  "dead_marbles": 1,
+  "destroyed_marbles": [
+    "violet"
+  ],
+  "ecosystem_finite": true,
+  "sentences": [
+    "I lime born move west bump left move east bump top move south bump top move south bump top move south | 20",
+    "I violet born move south bump bottom died then violet move north bump bottom then violet move south bump right move west | 19",
+    "I navy born move east bump right move west bump bottom then navy move north then navy move north then navy move west | 19",
+    "I lime move west bump left move east then lime move south then lime move north then lime move east | 19",
+    "I gold born still bump right move west then gold move south then gold move east bump top move south | 19"
+  ]
+}

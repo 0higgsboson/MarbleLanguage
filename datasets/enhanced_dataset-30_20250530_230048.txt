@@ -1,0 +1,47 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-30 23:00:48
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 30
+  Unique colors used: 19
+  Wall collisions: 0
+  Marble collisions: 0
+  Average sentence length: 7.5 tokens
+
+Sentences:
+----------------------------------------
+1. "I indigo marble move south bump violet marble move east"
+2. ""
+3. "I pink marble move south bump right bounce away"
+4. "I cyan marble move west"
+5. "I lime marble move south then brown marble move away"
+6. "I orange marble move south bump left bounce away then brown marble move west"
+7. "I coral marble move north bump left bounce away"
+8. "I purple"
+9. "I navy"
+10. "I green marble still then navy marble move east"
+11. "I blue marble move west bump right bounce away then teal marble move east"
+12. "I gray marble still bump teal marble move south"
+13. "I black marble move west bump bottom"
+14. "I red"
+15. "I yellow marble move south bump right bounce away"
+16. "I violet"
+17. "I gold marble still bump bottom"
+18. "I teal marble move west bump right bounce away"
+19. "I silver marble still"
+20. "I purple marble move away bump orange marble move north"
+21. "I coral marble move north bump top I purple bounce away"
+22. "I teal marble move west bump cyan marble move away"
+23. "I orange I teal"
+24. "I green marble move east"
+25. "I lime marble still"
+26. "I orange marble move west bump top bounce away"
+27. "I yellow marble move north bump bottom"
+28. "I coral marble move west bump top bounce away then teal marble move east"
+29. "I blue marble move west bump right bounce away"
+30. "I blue marble move east bump orange marble move away"
+
+Total sentences: 30
+
+Raw array format:
+['I indigo marble move south bump violet marble move east', '', 'I pink marble move south bump right bounce away', 'I cyan marble move west', 'I lime marble move south then brown marble move away', 'I orange marble move south bump left bounce away then brown marble move west', 'I coral marble move north bump left bounce away', 'I purple', 'I navy', 'I green marble still then navy marble move east', 'I blue marble move west bump right bounce away then teal marble move east', 'I gray marble still bump teal marble move south', 'I black marble move west bump bottom', 'I red', 'I yellow marble move south bump right bounce away', 'I violet', 'I gold marble still bump bottom', 'I teal marble move west bump right bounce away', 'I silver marble still', 'I purple marble move away bump orange marble move north', 'I coral marble move north bump top I purple bounce away', 'I teal marble move west bump cyan marble move away', 'I orange I teal', 'I green marble move east', 'I lime marble still', 'I orange marble move west bump top bounce away', 'I yellow marble move north bump bottom', 'I coral marble move west bump top bounce away then teal marble move east', 'I blue marble move west bump right bounce away', 'I blue marble move east bump orange marble move away']

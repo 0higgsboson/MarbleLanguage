@@ -1,0 +1,13 @@
+{
+  "timestamp": "20250531_002758",
+  "total_sentences": 3,
+  "alive_marbles": 20,
+  "dead_marbles": 0,
+  "destroyed_marbles": [],
+  "ecosystem_finite": false,
+  "sentences": [
+    "I green born move south then green move west bump right move west then green move south bump bottom then green move south | 20",
+    "I cyan born move south bump right move west then cyan move north then cyan move south then cyan move south | 20",
+    "I pink born still bump top I cyan move south bump top move south bump cyan marble move north then pink move west | 20"
+  ]
+}

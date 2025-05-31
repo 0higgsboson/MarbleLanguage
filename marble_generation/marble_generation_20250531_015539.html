@@ -1,0 +1,865 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marble Language Generation - 20250531_015539</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .header { text-align: center; margin-bottom: 30px; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-box { background: #e3f2fd; padding: 15px; border-radius: 5px; text-align: center; }
+        .stat-number { font-size: 2em; font-weight: bold; color: #1976d2; }
+        .stat-label { color: #666; font-size: 0.9em; }
+        .sentences { background: #fafafa; padding: 20px; border-radius: 5px; }
+        .sentence { margin: 5px 0; padding: 10px; background: white; border-left: 4px solid #4caf50; }
+        .sentence.death { border-left-color: #f44336; }
+        .sentence.birth { border-left-color: #2196f3; }
+        .marble-count { float: right; font-weight: bold; color: #666; }
+        .destroyed-list { background: #ffebee; padding: 15px; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Marble Language Generation Dashboard</h1>
+            <p>Generated on 2025-05-31 01:55:39</p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">201</div>
+                <div class="stat-label">Total Sentences</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Alive Marbles</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">14</div>
+                <div class="stat-label">Dead Marbles</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">Yes</div>
+                <div class="stat-label">Ecosystem Finite</div>
+            </div>
+        </div>
+        
+        <div class="destroyed-list">
+            <h3>💀 Destroyed Marbles</h3>
+            <p>blue, cyan, gold, gray, indigo, lime, navy, pink, purple, red, silver, teal, violet, white</p>
+        </div>
+        
+        <div class="sentences">
+            <h3>📝 Generated Sentences</h3>
+
+            <div class="sentence death">
+                <span class="marble-count">19</span>
+                1. I pink born move south bump bump bottom died
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">18</span>
+                2. I purple born move west bump bottom died
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">17</span>
+                3. I gold born move west bump left bump right then gold move north then gold move east bump right bump bottom died
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">16</span>
+                4. I brown born move west bump left then brown move west bump right then brown move north bump left bump bottom died
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">15</span>
+                5. I cyan born move east bump left bump top bump right bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">15</span>
+                6. I silver born still bump right bump top then silver move north then silver move north then silver move south
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">15</span>
+                7. I coral born move west bump left then coral move east then coral move east then coral move east bump top
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">14</span>
+                8. I coral still bump left then coral move east bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">14</span>
+                9. I violet born move north bump top I blue move south then violet move west then violet move north then violet move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">14</span>
+                10. I silver move south then silver move south then silver move east then silver move west then silver move north
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">14</span>
+                11. I yellow born still bump top I teal move south then teal move south then yellow move west then yellow move north
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">14</span>
+                12. I lime born still bump right then lime move north bump right then lime move east then lime move east
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">13</span>
+                13. I white born move south bump bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">13</span>
+                14. I lime move west then lime move east then lime move west bump top then lime move east bump left
+            </div>
+            <div class="sentence">
+                <span class="marble-count">13</span>
+                15. I violet move north bump top I red move south then red move north bump red marble move west then violet move north
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">12</span>
+                16. I silver move west then silver move east bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">12</span>
+                17. I navy born move west bump left then navy move east then navy move west then navy move west then navy move north
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">12</span>
+                18. I teal born move west bump left then teal move west then teal move north then teal move south then teal move west
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">12</span>
+                19. I red born move north bump top I green move south then red move west bump right then red move east
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">11</span>
+                20. I blue born move south then blue move west bump top bump top then blue move south bump bottom died
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">10</span>
+                21. I lime move east bump right then lime move south then lime move north bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">10</span>
+                22. I yellow move east bump right bump left bump top then yellow move north then yellow move west bump left
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">10</span>
+                23. I indigo born move south bump bump right then indigo move north then indigo move west bump right then indigo move south
+            </div>
+            <div class="sentence">
+                <span class="marble-count">10</span>
+                24. I violet move north bump left then violet move west then violet move west then violet move west bump top
+            </div>
+            <div class="sentence">
+                <span class="marble-count">10</span>
+                25. I yellow move east bump right bump left then yellow move south bump left then yellow move north bump left
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">9</span>
+                26. I black born move east bump right then black move east bump right bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">9</span>
+                27. I gray born move east bump right then gray move east bump right then gray move north then gray move north
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">8</span>
+                28. I teal move south bump then teal move north bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">8</span>
+                29. I gray move north bump top I green move south then gray move east bump top then gray move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">8</span>
+                30. I yellow move east then yellow move south bump left then yellow move south bump left then yellow move north
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">7</span>
+                31. I indigo still bump left then indigo move east bump right then indigo move north then indigo move south bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">7</span>
+                32. I yellow still bump right bump top then yellow move north then yellow move south then yellow move north then yellow move east
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">7</span>
+                33. I green born move north bump right then green move west then green move east then green move west then green move south
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">6</span>
+                34. I red move west then red move north then red move west bump right bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                35. I teal born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                36. I navy move west bump left then navy move north then navy move east bump left bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                37. I brown born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                38. I violet still bump left then violet move south bump right then violet move north then violet move west bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                39. I yellow move north then yellow move west bump right then yellow move south then yellow move north then yellow move west
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                40. I gray move north bump top I green move south then gray move west bump green marble move east then gray move west
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                41. I purple born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                42. I gray still then gray move north bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                43. I silver born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                44. I orange born move west bump left then orange move west then orange move west bump left bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                45. I yellow move north then yellow move south then yellow move west bump top bump top bump left bump right
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                46. I cyan born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                47. I green move north bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                48. I black born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                49. I brown still bump right then brown move south then brown move east then brown move north bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                50. I orange born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                51. I silver still then silver move east bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                52. I cyan move west bump left then cyan move east bump left then cyan move south then cyan move east
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                53. I gold born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                54. I orange move north then orange move west bump top bump right then orange move west bump left bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                55. I gold move east bump right then gold move south then gold move west bump right then gold move south
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                56. I pink born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                57. I cyan move north then cyan move west bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                58. I purple move north bump top I black move south then purple move east then purple move west bump right
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                59. I yellow move south bump right then yellow move west then yellow move north then yellow move east bump top
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                60. I purple move west bump left then purple move south then purple move north then purple move south then purple move west
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                61. I cyan born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                62. I gold still bump top I pink move south then gold move north bump left bump top bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                63. I navy born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                64. I black move south bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                65. I purple still then purple move south bump top bump right then purple move south then purple move west bump left
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                66. I yellow move south bump then yellow move west then yellow move east then yellow move east then yellow move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                67. I teal move west then teal move west then teal move north bump top bump top then teal move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                68. I navy move south bump then navy move south bump top then navy move west then navy move south bump left
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                69. I lime born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                70. I navy move east bump right then navy move east bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                71. I yellow move north bump top I teal move south then teal move south bump teal marble move east bump teal marble move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                72. I cyan move east then cyan move north then cyan move north then cyan move east then cyan move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                73. I lime move south bump then lime move north bump right bump top bump top bump top bump left then lime move south
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                74. I indigo born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                75. I yellow move east bump right then yellow move south then yellow move north then yellow move east bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                76. I indigo move north then indigo move south then indigo move north then indigo move south then indigo move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                77. I lime move north bump top I pink move south then lime move west then lime move south bump pink marble move south
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                78. I purple move east bump right then purple move south then purple move west then purple move west then purple move west
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                79. I teal move north bump top I indigo move south then teal move north then teal move east then teal move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                80. I lime move south bump bump right bump top bump top then lime move west bump left bump left bump top
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                81. I pink move west bump left then pink move east then pink move south bump left then pink move south
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                82. I teal still bump left bump left bump left bump top bump right bump right then teal move south then teal move west
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                83. I orange born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                84. I indigo move east bump right then indigo move north bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                85. I gray born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                86. I pink move south then pink move north then pink move west bump right bump top bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                87. I cyan move east bump right bump left bump top bump left bump top then cyan move north then cyan move south
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                88. I green born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                89. I lime move south bump bump top bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                90. I silver born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                91. I teal still then teal move east bump right bump left bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                92. I lime born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                93. I cyan move east bump right then cyan move north bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                94. I blue born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                95. I green still bump right then green move north bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                96. I lime move east bump right bump left then lime move north bump right then lime move north then lime move west
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                97. I navy born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                98. I orange move west bump left then orange move east then orange move south bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                99. I navy move south bump top then navy move east then navy move north then navy move east bump top
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                100. I purple move north bump top I lime move south bump left then purple move north bump lime marble move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                101. I lime still bump top I gray move south then lime move north then lime move north bump right bump gray marble move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                102. I silver move north bump left bump right then silver move south then silver move west then silver move north
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                103. I pink born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                104. I blue move east bump right then blue move east bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                105. I gray move east then gray move east bump left then gray move east then gray move north then gray move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                106. I silver move north bump top I navy move south bump navy marble move west then silver move west bump right
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                107. I pink move south bump bump right then pink move south then pink move south bump left bump right then pink move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                108. I lime move east then lime move south then lime move north then lime move south bump left then lime move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                109. I purple still then purple move east then purple move south then purple move south bump top then purple move west
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                110. I black born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                111. I navy still then navy move east then navy move south then navy move east then navy move south bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                112. I silver still bump left then silver move west then silver move south then silver move south then silver move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                113. I black move west bump left then black move north bump left bump right then black move east then black move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                114. I lime move east bump right then lime move south then lime move east then lime move west then lime move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                115. I black move west then black move north then black move south then black move north bump right then black move south
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                116. I pink move south bump bump left bump left bump left bump top then pink move south bump left then pink move south
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                117. I teal born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                118. I pink move south bump right bump left bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                119. I gray move north bump top I black move south then gray move south bump black marble move west then gray move south
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                120. I lime move west bump top bump left then lime move west then lime move south bump top then lime move west
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                121. I green born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                122. I gray move east bump left bump left then gray move south bump left bump left bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                123. I silver move north bump top I green move south bump green marble move south bump green marble move north then silver move south
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                124. I teal move north bump top I black move south then black move west then teal move west then teal move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                125. I lime still bump top I black move south bump black marble move south then lime move north then lime move south
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                126. I lime move east bump right then lime move east bump top bump top then lime move north bump right
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                127. I navy born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                128. I purple move west bump left then purple move east bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                129. I green move north bump top I navy move south then navy move west then green move north bump left
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                130. I navy move east bump right then navy move north then navy move south then navy move south bump top
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                131. I purple born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                132. I teal move east bump right then teal move east bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                133. I gray born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                134. I navy still bump top I purple move south then navy move east bump left bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                135. I brown born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                136. I green move north bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                137. I gold born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                138. I purple still bump left then purple move north then purple move east bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                139. I brown move north bump top I gold move south then brown move west bump left then brown move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                140. I gold move east bump left then gold move west then gold move south then gold move north bump left
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                141. I silver move east bump right then silver move east then silver move west bump right then silver move south
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                142. I blue born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                143. I gold move west then gold move south then gold move west bump left bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                144. I silver move east bump right bump left bump right then silver move east then silver move south then silver move east
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                145. I yellow born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                146. I lime move east bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                147. I violet born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                148. I gray move east then gray move west bump top bump left bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                149. I gray born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                150. I black move east bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                151. I blue move west bump left bump right then blue move west bump left then blue move north bump right
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                152. I silver move west bump left bump right bump top then silver move north bump left then silver move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                153. I brown move north bump top I gray move south then brown move east bump gray marble move south bump top
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                154. I orange born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                155. I brown still bump right then brown move east bump left bump right bump right bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                156. I lime born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                157. I violet move south bump then violet move south bump right bump top bump top then violet move north bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                158. I orange move south bump then orange move south bump left then orange move south bump right bump left bump right
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                159. I blue move north bump top I lime move south then blue move south bump right then blue move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                160. I yellow move south bump right bump right bump right then yellow move north then yellow move south then yellow move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                161. I orange still then orange move east bump right then orange move east bump left then orange move east then orange move south
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                162. I teal born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                163. I blue move east bump right bump top then blue move south bump left bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                164. I lime move south bump then lime move north then lime move west then lime move south bump right then lime move east
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                165. I white born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                166. I lime move north bump top I gray move south bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                167. I silver move north bump top I orange move south then orange move east then silver move west bump orange marble move south
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                168. I teal move north bump top I white move south bump white marble move west bump white marble move south bump white marble move south
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                169. I green born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                170. I white move east bump right bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                171. I yellow move south bump then yellow move west bump right bump top then yellow move west then yellow move south
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                172. I red born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                173. I gray still bump top I yellow move south then gray move east bump left bump right bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                174. I purple born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                175. I green move south bump then green move west then green move north bump left bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                176. I green born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                177. I red move west bump top bump right then red move north then red move south bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                178. I silver move east bump right bump left then silver move east then silver move south bump left then silver move south
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                179. I teal move north bump top I orange move south then orange move south bump orange marble move north bump right
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                180. I gold born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                181. I purple move west bump left then purple move east then purple move north bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                182. I yellow move south bump then yellow move north then yellow move west then yellow move west then yellow move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                183. I teal move east bump right bump right then teal move east bump top then teal move north bump left
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                184. I brown born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                185. I teal move west then teal move east bump top bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                186. I cyan born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                187. I orange move south bump then orange move west then orange move west then orange move south bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                188. I orange born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                189. I silver still bump left then silver move east bump right bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                190. I cyan move south bump then cyan move west bump right then cyan move east bump left then cyan move north
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                191. I cyan move west bump left then cyan move east bump right then cyan move south then cyan move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                192. I green move west bump left then green move west then green move north then green move north then green move east
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                193. I black born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                194. I gold move east then gold move north then gold move west bump bottom died
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                195. I coral born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                196. I cyan move south bump bump bottom died
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                197. I brown move north bump top I black move south bump black marble move south then brown move north then brown move east
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                198. I coral move east bump right then coral move north then coral move north bump top then coral move south
+            </div>
+            <div class="sentence">
+                <span class="marble-count">6</span>
+                199. I green move east bump right then green move east bump right then green move north then green move south
+            </div>
+            <div class="sentence birth">
+                <span class="marble-count">6</span>
+                200. I orange born
+            </div>
+            <div class="sentence death">
+                <span class="marble-count">5</span>
+                201. I orange move east bump right bump right bump bottom died
+            </div>
+        </div>
+    </div>
+</body>
+</html>

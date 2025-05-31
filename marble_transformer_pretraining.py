@@ -84,7 +84,7 @@ logger = logging.getLogger(__name__)
 class MarbleLanguageDataset(Dataset):
     """Dataset class for marble language sentences"""
     
-    def __init__(self, sentences: List[str], vocab: Dict[str, int], max_length: int = 16):
+    def __init__(self, sentences: List[str], vocab: Dict[str, int], max_length: int = 30):
         self.sentences = sentences
         self.vocab = vocab
         self.max_length = max_length
@@ -140,7 +140,7 @@ class MarbleTransformer(nn.Module):
     """Simple transformer model for marble language"""
     
     def __init__(self, vocab_size: int, embed_dim: int = 64, num_heads: int = 2, 
-                 num_layers: int = 2, ff_dim: int = 128, max_length: int = 16):
+                 num_layers: int = 2, ff_dim: int = 128, max_length: int = 30):
         super().__init__()
         
         self.vocab_size = vocab_size
@@ -361,6 +361,11 @@ class MarbleLanguageTrainer:
                         'Loss': f'{loss.item():.4f}',
                         'Acc': f'{current_acc:.4f}'
                     })
+        
+        # Handle empty dataloader case
+        if len(dataloader) == 0:
+            print("⚠️  Warning: Empty validation dataloader")
+            return 0.0, 0.0, 1.0
         
         avg_loss = total_loss / len(dataloader)
         accuracy = total_correct / total_tokens if total_tokens > 0 else 0
@@ -643,8 +648,28 @@ class TrainingPlotter:
 def split_data(sentences: List[str], train_ratio: float = 0.7, val_ratio: float = 0.2):
     """Split data into train/validation/test sets"""
     n = len(sentences)
-    train_end = int(n * train_ratio)
-    val_end = int(n * (train_ratio + val_ratio))
+    
+    # Ensure minimum dataset size
+    if n < 10:
+        raise ValueError(f"Dataset too small ({n} sentences). Need at least 10 sentences for training.")
+    
+    # Calculate splits with minimum guarantees
+    train_end = max(int(n * train_ratio), 1)  # At least 1 training sentence
+    val_size = max(int(n * val_ratio), 1)     # At least 1 validation sentence
+    test_size = max(n - train_end - val_size, 1)  # At least 1 test sentence
+    
+    # Adjust if sizes don't add up
+    if train_end + val_size + test_size > n:
+        # Reduce test size if needed
+        test_size = max(n - train_end - val_size, 0)
+        if test_size == 0:
+            # Reduce validation size if needed
+            val_size = max(n - train_end, 1)
+            test_size = 0
+    
+    val_end = train_end + val_size
+    
+    print(f"📊 Dataset split: Total={n}, Train={train_end}, Val={val_size}, Test={test_size}")
     
     # Shuffle sentences
     import random
@@ -652,13 +677,19 @@ def split_data(sentences: List[str], train_ratio: float = 0.7, val_ratio: float 
     
     train_sentences = sentences[:train_end]
     val_sentences = sentences[train_end:val_end]
-    test_sentences = sentences[val_end:]
+    test_sentences = sentences[val_end:] if test_size > 0 else []
+    
+    # Verify no empty splits
+    if len(train_sentences) == 0:
+        raise ValueError("Training set is empty!")
+    if len(val_sentences) == 0:
+        raise ValueError("Validation set is empty!")
     
     return train_sentences, val_sentences, test_sentences
 
 
-def find_latest_dataset(datasets_dir: str = './datasets') -> List[str]:
-    """Find the latest dataset file(s) in the datasets directory"""
+def find_best_dataset(datasets_dir: str = './datasets', min_size_kb: float = 5.0) -> List[str]:
+    """Find the best dataset file(s) in the datasets directory (prefer larger, suitable datasets)"""
     try:
         if not os.path.exists(datasets_dir):
             raise FileNotFoundError(f"Datasets directory not found: {datasets_dir}")
@@ -671,34 +702,73 @@ def find_latest_dataset(datasets_dir: str = './datasets') -> List[str]:
                 # Get file modification time and size
                 mtime = os.path.getmtime(file_path)
                 size = os.path.getsize(file_path)
-                dataset_files.append((file_path, mtime, file, size))
+                size_kb = size / 1024
+                dataset_files.append((file_path, mtime, file, size, size_kb))
         
         if not dataset_files:
             raise FileNotFoundError(f"No dataset files found in {datasets_dir}")
         
-        # Sort by modification time (newest first)
-        dataset_files.sort(key=lambda x: x[1], reverse=True)
+        # Filter for datasets that meet minimum size requirement
+        suitable_files = [f for f in dataset_files if f[4] >= min_size_kb]
         
         # Show available datasets
         logger.info("Available datasets in datasets directory:")
-        for i, (path, mtime, name, size) in enumerate(dataset_files[:5]):  # Show top 5
+        dataset_files.sort(key=lambda x: x[4], reverse=True)  # Sort by size (largest first)
+        for i, (path, mtime, name, size, size_kb) in enumerate(dataset_files[:8]):  # Show top 8
             modified_time = datetime.fromtimestamp(mtime).strftime('%Y-%m-%d %H:%M:%S')
-            size_kb = size / 1024
-            marker = "📍 SELECTED" if i == 0 else "  "
+            is_suitable = size_kb >= min_size_kb
+            marker = "✅ GOOD" if is_suitable else "❌ TOO SMALL"
             logger.info(f"  {marker} {name} ({size_kb:.1f}KB, modified: {modified_time})")
         
-        if len(dataset_files) > 5:
-            logger.info(f"  ... and {len(dataset_files) - 5} more datasets")
+        if len(dataset_files) > 8:
+            logger.info(f"  ... and {len(dataset_files) - 8} more datasets")
         
-        # Return the most recent file
-        latest_file = dataset_files[0][0]
-        logger.info(f"Auto-selected: {dataset_files[0][2]}")
-        
-        return [latest_file]
+        # Choose the largest suitable dataset
+        if suitable_files:
+            # Sort by size (largest first)
+            suitable_files.sort(key=lambda x: x[4], reverse=True)
+            best_file = suitable_files[0][0]
+            logger.info(f"📍 Auto-selected: {suitable_files[0][2]} ({suitable_files[0][4]:.1f}KB)")
+            return [best_file]
+        else:
+            logger.warning(f"No datasets found with minimum size {min_size_kb}KB")
+            logger.info("🔧 Generating a new suitable dataset...")
+            return generate_training_dataset(datasets_dir)
         
     except Exception as e:
-        logger.error(f"Failed to find latest dataset: {e}")
+        logger.error(f"Failed to find best dataset: {e}")
         raise
+
+
+def generate_training_dataset(datasets_dir: str, target_size: int = 500) -> List[str]:
+    """Generate a new training dataset of suitable size"""
+    from marble_language.core.generator import EnhancedMarbleSentenceGenerator
+    
+    logger.info(f"🔧 Generating new dataset with {target_size} sentences...")
+    
+    # Generate new dataset
+    generator = EnhancedMarbleSentenceGenerator()
+    sentences = generator.generate_sentences(target_size)
+    
+    # Save to datasets directory
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"enhanced_dataset-{len(sentences)}_{timestamp}.txt"
+    filepath = os.path.join(datasets_dir, filename)
+    
+    # Use the existing save function format
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(f"Enhanced Marble Language Dataset - Generated on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
+        f.write("=" * 80 + "\n\n")
+        f.write(f"Generated for training purposes with {len(sentences)} sentences\n\n")
+        f.write("Sentences:\n")
+        f.write("-" * 40 + "\n")
+        for i, sentence in enumerate(sentences, 1):
+            # Remove marble count for training data
+            sentence_text = sentence.split(' | ')[0] if ' | ' in sentence else sentence
+            f.write(f'{i}. "{sentence_text}"\n')
+    
+    logger.info(f"✅ Generated dataset saved: {filename} ({len(sentences)} sentences)")
+    return [filepath]
 
 
 def main():
@@ -729,7 +799,7 @@ def main():
             logger.info("--auto_latest flag specified, selecting latest dataset...")
         
         try:
-            data_file_paths = find_latest_dataset(args.datasets_dir)
+            data_file_paths = find_best_dataset(args.datasets_dir)
         except Exception as e:
             logger.error(f"Failed to auto-select dataset: {e}")
             logger.info("Please specify dataset files manually or ensure datasets directory contains valid files")
@@ -840,6 +910,7 @@ def main():
     patience = 10
     patience_counter = 0
     training_start_time = datetime.now()
+    best_model_filename = 'best_model.pt'  # Default filename
     
     os.makedirs(args.output_dir, exist_ok=True)
     
@@ -928,10 +999,15 @@ def main():
             best_val_loss = val_loss
             patience_counter = 0
             
-            # Save best model
+            # Save best model with timestamp
+            model_timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            best_model_filename = f'best_model_v3.0_{model_timestamp}.pt'
+            
             torch.save({
                 'model_state_dict': model.state_dict(),
                 'vocab': vocab,
+                'model_version': '3.0',  # Physics-based version
+                'timestamp': model_timestamp,
                 'train_loss': train_loss,
                 'val_loss': val_loss,
                 'val_accuracy': val_accuracy,
@@ -939,8 +1015,43 @@ def main():
                 'epoch': epoch,
                 'completed_iterations': completed_iterations,
                 'saved_at': datetime.now().isoformat(),
-                'timestamp': datetime.now().timestamp()
-            }, os.path.join(args.output_dir, 'best_model.pt'))
+                'timestamp_unix': datetime.now().timestamp(),
+                'hyperparameters': {
+                    'epochs': args.epochs,
+                    'batch_size': args.batch_size,
+                    'learning_rate': trainer.optimizer.param_groups[0]['lr']
+                },
+                'marble_features': {
+                    'physics_enabled': True,
+                    'max_marbles': 20,
+                    'finite_ecosystem': True,
+                    'marble_diameter': 1.0,
+                    'movement_speed': 5.0,
+                    'streamlined_grammar': True,  # Removed 'into'
+                    'wall_bouncing': True,
+                    'marble_collision_randomization': True
+                }
+            }, os.path.join(args.output_dir, best_model_filename))
+            
+            # Also save a symbolic link to latest best model
+            latest_model_path = os.path.join(args.output_dir, 'best_model.pt')
+            timestamped_model_path = os.path.join(args.output_dir, best_model_filename)
+            
+            # Remove old symlink if it exists
+            if os.path.exists(latest_model_path) or os.path.islink(latest_model_path):
+                os.remove(latest_model_path)
+            
+            # Create new symlink to latest model
+            try:
+                os.symlink(best_model_filename, latest_model_path)
+                logger.info(f"  ✓ New best model saved: {best_model_filename}")
+                logger.info(f"  ✓ Symlink updated: best_model.pt -> {best_model_filename}")
+            except OSError:
+                # On Windows or if symlinks aren't supported, just copy the file
+                import shutil
+                shutil.copy2(timestamped_model_path, latest_model_path)
+                logger.info(f"  ✓ New best model saved: {best_model_filename}")
+                logger.info(f"  ✓ Copy created: best_model.pt")
             
             logger.info("  ✓ New best model saved!")
             
@@ -1018,7 +1129,7 @@ def main():
                 'test_loss': test_loss,
                 'test_accuracy': test_accuracy,
                 'test_perplexity': test_perplexity,
-                'model_path': os.path.join(args.output_dir, 'best_model.pt'),
+                'model_path': os.path.join(args.output_dir, best_model_filename),
                 'results_path': results_path,
                 'plots_path': plots_path,
                 'notes': f"Training completed with {patience_counter} patience counter"

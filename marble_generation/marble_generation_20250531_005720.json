@@ -1,0 +1,39 @@
+{
+  "timestamp": "20250531_005720",
+  "total_sentences": 20,
+  "alive_marbles": 12,
+  "dead_marbles": 8,
+  "destroyed_marbles": [
+    "black",
+    "blue",
+    "coral",
+    "gold",
+    "green",
+    "teal",
+    "violet",
+    "white"
+  ],
+  "ecosystem_finite": true,
+  "sentences": [
+    "I gold born move east then gold move south bump left then gold move west then gold move east bump top | 20",
+    "I red born move east bump right bump right then red move east then red move north then red move east | 20",
+    "I silver born still bump right then silver move south then silver move west bump right then silver move north | 20",
+    "I indigo born move west bump left then indigo move west bump left then indigo move north then indigo move south | 20",
+    "I green born move north then green move west bump right bump right then green move east bump bottom died | 19 | 19",
+    "I coral born move west bump left bump right then coral move south bump bottom died | 18 | 18",
+    "I pink born move east bump right then pink move west then pink move east then pink move south then pink move west | 18",
+    "I white born move north bump top I pink move south bump top then white move south then white move east | 18",
+    "I teal born move east bump right bump right bump top then teal move south bump left bump right bump top | 18",
+    "I blue born move west bump left bump top bump bottom died | 17 | 17",
+    "I black born move south bump bottom died | 16 | 16",
+    "I purple born move south then purple move south bump right bump right then purple move west then purple move south | 16",
+    "I gold move east bump top bump bottom died | 15 | 15",
+    "I teal still bump top I lime move south bump lime marble move north bump top then teal move north then teal move north | 15",
+    "I indigo move north bump left then indigo move south bump top bump top bump right bump left then indigo move west | 15",
+    "I indigo still bump left then indigo move west then indigo move north then indigo move north then indigo move north | 15",
+    "I white move west then white move north bump left bump bottom died | 14 | 14",
+    "I teal move west then teal move south then teal move east then teal move west bump bottom died | 13 | 13",
+    "I violet born still then violet move north bump left then violet move west bump bottom died | 12 | 12",
+    "I indigo move north bump top I pink move south then pink move south then indigo move south then indigo move west | 12"
+  ]
+}

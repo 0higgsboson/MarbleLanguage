@@ -1,0 +1,28 @@
+{
+  "timestamp": "20250531_013035",
+  "total_sentences": 10,
+  "alive_marbles": 13,
+  "dead_marbles": 7,
+  "destroyed_marbles": [
+    "blue",
+    "green",
+    "navy",
+    "pink",
+    "red",
+    "teal",
+    "violet"
+  ],
+  "ecosystem_finite": true,
+  "sentences": [
+    "I teal born move west bump left then teal move east bump left then teal move south then teal move west | 20",
+    "I pink born move south bump bottom died | 19 | 19",
+    "I navy born move west bump left bump right bump bottom died | 18 | 18",
+    "I blue born still bump bottom died | 17 | 17",
+    "I teal move south bump bottom died | 16 | 16",
+    "I green born move north bump left bump bottom died | 15 | 15",
+    "I red born move west bump left then red move east bump bottom died | 14 | 14",
+    "I lime born move east bump right then lime move west then lime move north then lime move west then lime move west | 14",
+    "I violet born move west bump left then violet move west then violet move north bump bottom died | 13 | 13",
+    "I black born move north then black move east then black move north bump top then black move south bump right | 13"
+  ]
+}

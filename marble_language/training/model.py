@@ -1,7 +1,21 @@
 #!/usr/bin/env python3
 """
-Marble Language Transformer Model
-Enhanced transformer architecture for the marble language with collision detection
+Marble Language Transformer Model v3.0
+Physics-enhanced transformer architecture for the marble language
+
+Version History:
+v1.0 - Basic marble language with simple collisions (16 tokens max)
+v2.0 - Enhanced with wall effects, color changes, destruction (30 tokens max)
+v3.0 - Physics-based with 20 marbles, finite ecosystem, bounce mechanics
+
+Features in v3.0:
+- 20 unique marble colors (finite ecosystem)
+- Physics: 1-inch diameter, 5 inches/iteration movement
+- Wall bouncing mechanics (away from walls)
+- Marble collision randomization
+- Streamlined grammar (removed 'into')
+- Top wall color changes, bottom wall destruction
+- Stationary marble capability
 """
 
 import torch
@@ -10,17 +24,30 @@ from typing import Optional
 
 
 class MarbleTransformer(nn.Module):
-    """Enhanced transformer model for marble language with collision awareness"""
+    """Physics-enhanced transformer model for marble language v3.0
+    
+    Model Version: 3.0
+    Features: 20 marbles, physics-based movement, finite ecosystem
+    Max sequence length: 30 tokens
+    Vocabulary: ~24+ tokens (20 colors + physics + grammar)
+    """
     
     def __init__(self, vocab_size: int, embed_dim: int = 64, num_heads: int = 2, 
-                 num_layers: int = 2, ff_dim: int = 128, max_length: int = 16,
+                 num_layers: int = 2, ff_dim: int = 128, max_length: int = 30,
                  dropout: float = 0.1):
         super().__init__()
         
+        # Model version and configuration
+        self.model_version = "3.0"
         self.vocab_size = vocab_size
         self.embed_dim = embed_dim
         self.max_length = max_length
         self.dropout = dropout
+        
+        # Physics features
+        self.supports_physics = True
+        self.max_marbles = 20
+        self.finite_ecosystem = True
         
         # Embeddings
         self.token_embedding = nn.Embedding(vocab_size, embed_dim)

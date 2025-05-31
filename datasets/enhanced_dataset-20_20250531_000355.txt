@@ -1,0 +1,37 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-31 00:03:55
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 20
+  Unique colors used: 14
+  Wall collisions: 0
+  Marble collisions: 0
+  Average sentence length: 8.8 tokens
+
+Sentences:
+----------------------------------------
+1. "I black born move west bump left move east"
+2. "I pink born move north bump top I gold move south then gold move east"
+3. "I gray born move south bump bottom died"
+4. "I navy born move north then navy move west"
+5. "I teal born still"
+6. "I coral born move east bump right move west"
+7. "I silver born move west bump left move east"
+8. "I violet born still"
+9. "I teal still bump right move west"
+10. "I silver still then silver move north"
+11. "I blue born move west then blue move west"
+12. "I lime born still bump left move east then lime move east"
+13. "I yellow born move south bump bottom died"
+14. "I gold born move east bump right move west"
+15. "I navy move east bump right move west then navy move west"
+16. "I brown born move north bump top I black move south then black move east"
+17. "I black still"
+18. "I blue move east bump right move west"
+19. "I red born move east bump right move west then red move east"
+20. "I silver move south bump bottom died"
+
+Total sentences: 20
+
+Raw array format:
+['I black born move west bump left move east', 'I pink born move north bump top I gold move south then gold move east', 'I gray born move south bump bottom died', 'I navy born move north then navy move west', 'I teal born still', 'I coral born move east bump right move west', 'I silver born move west bump left move east', 'I violet born still', 'I teal still bump right move west', 'I silver still then silver move north', 'I blue born move west then blue move west', 'I lime born still bump left move east then lime move east', 'I yellow born move south bump bottom died', 'I gold born move east bump right move west', 'I navy move east bump right move west then navy move west', 'I brown born move north bump top I black move south then black move east', 'I black still', 'I blue move east bump right move west', 'I red born move east bump right move west then red move east', 'I silver move south bump bottom died']

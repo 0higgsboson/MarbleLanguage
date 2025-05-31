@@ -1,0 +1,33 @@
+{
+  "timestamp": "20250531_013800",
+  "dataset_size": 30,
+  "vocabulary_size": 38,
+  "training_history": {
+    "epochs": [
+      1,
+      2
+    ],
+    "losses": [
+      2.695206385361982,
+      1.9719869133085999
+    ],
+    "accuracies": [
+      0.31295017039026163,
+      0.5857772583187361
+    ],
+    "perplexities": [
+      6.4764641594891295,
+      3.9230804295174893
+    ],
+    "marble_stats": [
+      20,
+      5
+    ]
+  },
+  "final_metrics": {
+    "final_loss": 1.9719869133085999,
+    "final_accuracy": 0.5857772583187361,
+    "final_perplexity": 3.9230804295174893,
+    "final_marbles": 5
+  }
+}

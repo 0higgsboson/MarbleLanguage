@@ -1,0 +1,19 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-31 00:29:05
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 2
+  Unique colors used: 2
+  Wall collisions: 0
+  Marble collisions: 0
+  Average sentence length: 23.5 tokens
+
+Sentences:
+----------------------------------------
+1. "I red born move east then red move north bump bottom then red move north bump bottom bump right move west | 20"
+2. "I brown born still then brown move east then brown move south bump right move west bump bottom then brown move north | 20"
+
+Total sentences: 2
+
+Raw array format:
+['I red born move east then red move north bump bottom then red move north bump bottom bump right move west | 20', 'I brown born still then brown move east then brown move south bump right move west bump bottom then brown move north | 20']

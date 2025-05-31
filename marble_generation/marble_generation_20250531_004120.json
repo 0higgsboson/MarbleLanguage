@@ -1,0 +1,29 @@
+{
+  "timestamp": "20250531_004120",
+  "total_sentences": 15,
+  "alive_marbles": 17,
+  "dead_marbles": 3,
+  "destroyed_marbles": [
+    "orange",
+    "pink",
+    "red"
+  ],
+  "ecosystem_finite": true,
+  "sentences": [
+    "I green born move north bump top I indigo move south bump right move west then green move north then green move north | 20",
+    "I coral born still bump left move east then coral move east then coral move north then coral move north | 20",
+    "I orange born move south bump bottom died bump left move east then orange move south bump bottom then orange move north | 19",
+    "I teal born move west bump left move east then teal move north then teal move north then teal move east | 19",
+    "I purple born move west then purple move west bump right move west then purple move north then purple move south | 19",
+    "I red born move south bump bottom died then red move south then red move east then red move south | 18",
+    "I pink born move south bump bottom died then pink move east then pink move north then pink move east | 17",
+    "I blue born move north bump top I violet move south then violet move south bump top move south bump violet marble move east | 17",
+    "I silver born move east bump right move west bump right move west then silver move west bump bottom then silver move west | 17",
+    "I purple still bump left move east then purple move east bump top move south bump bottom then purple move south | 17",
+    "I coral move north bump top I gray move south then coral move south bump gray marble move east then coral move east | 17",
+    "I gold born move west bump left move east then gold move east bump top move south then gold move north | 17",
+    "I gray born move west bump left move east then gray move east then gray move west then gray move north | 17",
+    "I yellow born move east bump top move south then yellow move east then yellow move west bump top move south | 17",
+    "I teal move south bump left move east then teal move north then teal move north then teal move south | 17"
+  ]
+}

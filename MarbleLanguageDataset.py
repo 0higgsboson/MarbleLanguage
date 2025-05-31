@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 class MarbleLanguageDataset(Dataset):
     """Dataset class for marble language sentences"""
     
-    def __init__(self, sentences: List[str], vocab: Dict[str, int], max_length: int = 16):
+    def __init__(self, sentences: List[str], vocab: Dict[str, int], max_length: int = 30):
         self.sentences = sentences
         self.vocab = vocab
         self.max_length = max_length
@@ -90,7 +90,7 @@ class MarbleTransformer(nn.Module):
     """Simple transformer model for marble language"""
     
     def __init__(self, vocab_size: int, embed_dim: int = 64, num_heads: int = 2, 
-                 num_layers: int = 2, ff_dim: int = 128, max_length: int = 16):
+                 num_layers: int = 2, ff_dim: int = 128, max_length: int = 30):
         super().__init__()
         
         self.vocab_size = vocab_size

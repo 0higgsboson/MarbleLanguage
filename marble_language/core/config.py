@@ -20,31 +20,50 @@ class MarbleConfig:
     """Configuration class containing all marble language rules and constraints"""
     
     def __init__(self):
-        # Core vocabulary with enhanced marble colors
+        # Core vocabulary with simplified marble language (marbles self-identify as colors only)
         self.vocabulary = {
             'pronoun': ['I'],
-            'colors': ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'black', 'white', 'gray', 'brown', 'cyan'],
-            'object': ['marble'],
-            'states': ['move'],
-            'directions': ['east', 'west', 'north', 'south'],
-            'collision': ['bump', 'into'],
+            'colors': ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'black', 'white', 'gray', 'brown', 'cyan', 
+                      'lime', 'navy', 'teal', 'coral', 'gold', 'silver', 'violet', 'indigo'],  # 20 unique colors
+            # Removed 'marble' - marbles self-identify as just their color
+            'states': ['move', 'still'],  # Removed 'bounce' - no bouncing concept
+            'directions': ['east', 'west', 'north', 'south'],  # Removed 'away' - no bouncing
+            'collision': ['bump'],  # Simplified collision
             'connector': ['then'],
             'walls': ['top', 'bottom', 'left', 'right']
+            # Removed physics vocabulary - simpler language
         }
         
-        # Marble color uniqueness rules
+        # Marble physics and ecosystem rules
         self.marble_rules = {
             'unique_colors': True,  # Each marble must have a unique color
             'no_self_collision': True,  # Marbles cannot bump into themselves
             'collision_awareness': True,  # Marbles know what they bumped into
-            'max_marbles_per_scene': 12,  # Maximum number of marbles (limited by unique colors)
+            'initial_marble_count': 20,  # Start with exactly 20 marbles
+            'max_marbles_per_scene': 20,  # Maximum number of marbles (expanded to 20)
+            'finite_ecosystem': True,  # Once any marble dies, no new marbles can be born
+            'color_change_announcement': True,  # Color changes announce "I [new_color]"
+            'destroyed_marbles_no_sentences': True,  # Destroyed marbles generate no more sentences
         }
         
-        # Wall system rules
+        # NEW: Physical properties and movement rules
+        self.physics_rules = {
+            'marble_diameter': 1.0,  # Marbles are 1 inch in diameter
+            'movement_speed': 5.0,  # Marbles move 5 inches per iteration
+            'can_be_stationary': True,  # Marbles can be still (not moving)
+            'marble_collision_randomizes_direction': True,  # Random direction after marble collision
+            'wall_collision_bounces_away': True,  # Bounce away from walls (not random)
+            'collision_physics_enabled': True,  # Enable physics-based collision behavior
+        }
+        
+        # Wall system rules (simplified - no bouncing)
         self.wall_rules = {
             'named_walls': [wall.value for wall in WallName],
             'random_wall_collisions': True,  # Marbles can randomly bump into walls
-            'wall_collision_probability': 0.5,  # Increased from 0.3 - 50% of collisions are with walls
+            'wall_collision_probability': 0.5,  # 50% of collisions are with walls
+            'top_wall_changes_color': True,  # ONLY way to change color - touching top wall
+            'bottom_wall_destroys_marble': True,  # Touching bottom wall destroys marble (no bouncing)
+            'left_right_walls_stop_movement': True,  # Left/right walls just stop movement
         }
         
         # Collision detection and reporting
@@ -63,12 +82,15 @@ class MarbleConfig:
             'include_continuation': 0.3,
             'end_with_state': 0.5,
             'multi_marble_scene': 0.4,  # Probability of multiple marbles in scene
+            'top_wall_collision': 0.15,  # NEW: Probability of hitting top wall (color change)
+            'bottom_wall_collision': 0.1,  # NEW: Probability of hitting bottom wall (destruction)
+            'color_change_probability': 0.2,  # NEW: Random color change probability
         }
         
         # Grammar constraints
         self.grammar_rules = {
-            'min_sentence_length': 3,  # Minimum words per sentence
-            'max_sentence_length': 20,  # Maximum words per sentence
+            'min_sentence_length': 20,  # Minimum words per sentence (increased from 3)
+            'max_sentence_length': 30,  # Maximum words per sentence
             'must_start_with_pronoun': True,  # Sentences must start with 'I'
             'color_before_marble': True,  # Color must precede 'marble'
             'direction_after_move': True,  # Direction must follow 'move'
@@ -115,13 +137,17 @@ class MarbleConfig:
         return True
 
     def get_sentence_patterns(self) -> Dict[str, str]:
-        """Define valid sentence patterns for the marble language"""
+        """Define valid sentence patterns for the simplified marble language"""
         return {
-            'basic_movement': "I {color} marble move {direction}",
-            'marble_collision': "I {color1} marble move {direction} bump into {color2} marble",
-            'wall_collision': "I {color} marble move {direction} bump into {wall}",
-            'complex_sequence': "I {color1} marble move {direction1} bump into {color2} marble move {direction2}",
-            'wall_then_marble': "I {color1} marble move {direction1} bump into {wall} then {color2} marble move {direction2}",
+            'basic_movement': "I {color} move {direction}",  # Simplified: no 'marble' word
+            'stationary': "I {color} still",  # Marble can be stationary
+            'marble_collision': "I {color1} move {direction} bump {color2} move {random_direction}",  # Random direction after collision
+            'wall_collision_left_right': "I {color} move {direction} bump {wall}",  # Left/right walls stop movement
+            'complex_sequence': "I {color1} move {direction1} bump {color2} move {direction2}",
+            'wall_then_marble': "I {color1} move {direction1} bump {wall} then {color2} move {direction2}",
+            'top_wall_color_change': "I {color1} move {direction} bump top I {color2}",  # ONLY color change method
+            'bottom_wall_destruction': "I {color} move {direction} bump bottom",  # Destruction (no further action)
+            # Removed all spontaneous color changes - only top wall changes color
         }
 
     def get_special_tokens(self) -> Dict[str, int]:

@@ -1,0 +1,27 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-31 00:26:17
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 10
+  Unique colors used: 9
+  Wall collisions: 0
+  Marble collisions: 0
+  Average sentence length: 23.9 tokens
+
+Sentences:
+----------------------------------------
+1. "I pink born move east bump right move west bump bottom then pink move west bump right move west bump bottom | 20"
+2. "I white born move north bump top I navy move south then navy move north bump right move west then white move west | 20"
+3. "I violet born move north bump top I black move south bump left move east bump black marble move north then violet move east | 20"
+4. "I black born move north bump top I yellow move south bump yellow marble move south then black move west bump yellow marble move west | 20"
+5. "I yellow born still bump left move east then yellow move north then yellow move east bump left move east | 20"
+6. "I purple born move west bump left move east bump left move east then purple move east then purple move north | 20"
+7. "I pink still bump left move east bump left move east then pink move west then pink move south then pink move east | 20"
+8. "I pink move north bump top I cyan move south bump top move south then pink move north then pink move east | 20"
+9. "I black move south bump left move east then black move west bump right move west bump right move west | 20"
+10. "I indigo born still bump left move east then indigo move east bump right move west then indigo move east | 20"
+
+Total sentences: 10
+
+Raw array format:
+['I pink born move east bump right move west bump bottom then pink move west bump right move west bump bottom | 20', 'I white born move north bump top I navy move south then navy move north bump right move west then white move west | 20', 'I violet born move north bump top I black move south bump left move east bump black marble move north then violet move east | 20', 'I black born move north bump top I yellow move south bump yellow marble move south then black move west bump yellow marble move west | 20', 'I yellow born still bump left move east then yellow move north then yellow move east bump left move east | 20', 'I purple born move west bump left move east bump left move east then purple move east then purple move north | 20', 'I pink still bump left move east bump left move east then pink move west then pink move south then pink move east | 20', 'I pink move north bump top I cyan move south bump top move south then pink move north then pink move east | 20', 'I black move south bump left move east then black move west bump right move west bump right move west | 20', 'I indigo born still bump left move east then indigo move east bump right move west then indigo move east | 20']

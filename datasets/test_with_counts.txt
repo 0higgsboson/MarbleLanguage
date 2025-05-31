@@ -1,0 +1,22 @@
+Enhanced Marble Language Dataset - Generated on 2025-05-31 00:15:18
+================================================================================
+
+Dataset Statistics:
+  Total sentences: 5
+  Unique colors used: 5
+  Wall collisions: 0
+  Marble collisions: 0
+  Average sentence length: 9.4 tokens
+
+Sentences:
+----------------------------------------
+1. "I lime born still | 20"
+2. "I yellow born move west bump left move east | 20"
+3. "I navy born move south bump bottom died | 19"
+4. "I violet born move south bump bottom died | 18"
+5. "I gray born move south bump bottom died | 17"
+
+Total sentences: 5
+
+Raw array format:
+['I lime born still | 20', 'I yellow born move west bump left move east | 20', 'I navy born move south bump bottom died | 19', 'I violet born move south bump bottom died | 18', 'I gray born move south bump bottom died | 17']
